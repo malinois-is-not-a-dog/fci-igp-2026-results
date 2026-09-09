@@ -225,6 +225,13 @@
     font-weight:700;
     color:var(--moss-dark);
   }
+  .resultstatus{
+    margin-top:0.45rem;
+    font-size:0.74rem;
+    color:var(--muted);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  .resultstatus b{color:var(--ink); font-weight:600;}
   .empty{
     text-align:center;
     color:var(--muted);
@@ -353,14 +360,25 @@ const SCORES = {
   'SI-01': {a: '', b: '', c: 77}
 };
 
+function numericScore(value){
+  if(value === undefined || value === null || value === '') return null;
+  const text = String(value).trim();
+  if(!/^\d+(?:\.\d+)?$/.test(text)) return null;
+  const n = Number(text);
+  return Number.isFinite(n) ? n : null;
+}
+
 function getScore(catno){
   const s = LIVE_SCORES[catno];
-  if(!s) return {a:'', b:'', c:'', total:''};
+  if(!s) return {a:'', b:'', c:'', total:'', status:'', rating:''};
   const a = s.a === undefined || s.a === null ? '' : String(s.a);
   const b = s.b === undefined || s.b === null ? '' : String(s.b);
   const c = s.c === undefined || s.c === null ? '' : String(s.c);
-  const total = (a===''||b===''||c==='') ? '' : (Number(a)+Number(b)+Number(c)).toFixed(1);
-  return {a, b, c, total};
+  const nums = [numericScore(a), numericScore(b), numericScore(c)].filter(v => v !== null);
+  const total = nums.length ? nums.reduce((sum, v) => sum + v, 0).toFixed(1) : '';
+  const status = s.status === undefined || s.status === null ? '' : String(s.status);
+  const rating = s.rating === undefined || s.rating === null ? '' : String(s.rating);
+  return {a, b, c, total, status, rating};
 }
 
 // LIVE_SCORES starts as a copy of the fallback SCORES above, and is selectively
@@ -381,10 +399,10 @@ function mergeOfficialScores(json){
     const incoming = scoreMap[catno];
     if(!incoming || typeof incoming !== 'object') continue;
     if(!LIVE_SCORES[catno]) LIVE_SCORES[catno] = {a: '', b: '', c: ''};
-    for(const leg of ['a', 'b', 'c']){
-      const val = incoming[leg];
+    for(const field of ['a', 'b', 'c', 'status', 'rating']){
+      const val = incoming[field];
       if(val !== undefined && val !== null && val !== ''){
-        LIVE_SCORES[catno][leg] = val;
+        LIVE_SCORES[catno][field] = val;
       }
     }
   }
@@ -432,9 +450,9 @@ function showRankings(){
       catno,
       handler: info[3],
       country: info[0],
-      a: s.a === '' ? null : Number(s.a),
-      b: s.b === '' ? null : Number(s.b),
-      c: s.c === '' ? null : Number(s.c),
+      a: numericScore(s.a),
+      b: numericScore(s.b),
+      c: numericScore(s.c),
       total: s.total === '' ? null : Number(s.total)
     });
   }
@@ -532,8 +550,15 @@ function render(){
     const bVal = saved.b;
     const cVal = saved.c;
     const totVal = saved.total;
+    const statusVal = saved.status;
+    const ratingVal = saved.rating;
     const genderLabel = gender === 'male' ? 'Male' : 'Female';
     const age = calcAge(dob);
+
+    const extraResult = [
+      statusVal ? `<span><b>Status:</b> ${statusVal}</span>` : '',
+      ratingVal ? `<span><b>Rating:</b> ${ratingVal}</span>` : ''
+    ].filter(Boolean).join(' &nbsp;·&nbsp; ');
 
     const scoreSection = `
       <div class="readscores">
@@ -542,6 +567,7 @@ function render(){
         <div><label>C (Protection)</label>${cVal || '—'}</div>
         <div class="total-box"><label>TOTAL</label><span class="total-val">${totVal || '—'}</span></div>
       </div>
+      ${extraResult ? `<div class="resultstatus">${extraResult}</div>` : ''}
     `;
 
     card.innerHTML = `
