@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>FCI IGP 2026 Competitor & Results Tracker</title>
+<style>
+  :root{
+    --ink:#1c1f1a;
+    --paper:#f6f4ee;
+    --line:#d8d3c4;
+    --moss:#3f5940;
+    --moss-dark:#2b3f2c;
+    --muted:#7a7568;
+    --card:#ffffff;
+    --gold:#a8792a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Iowan Old Style","Palatino Linotype","Georgia",serif;
+    background:var(--paper);
+    color:var(--ink);
+    padding:0 0 3rem;
+  }
+  header{
+    padding:1.5rem 1.25rem 1rem;
+    border-bottom:1px solid var(--line);
+  }
+  header h1{
+    font-size:1.25rem;
+    font-weight:600;
+    margin:0 0 0.15rem;
+  }
+  header p{
+    margin:0;
+    font-size:0.82rem;
+    color:var(--muted);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  .lastupdated{
+    margin-top:0.4rem !important;
+    font-size:0.72rem !important;
+    color:var(--muted);
+  }
+  .controls{
+    display:flex;
+    flex-direction:column;
+    gap:0.5rem;
+    padding:1rem 1.25rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  select, input[type="text"]{
+    width:100%;
+    padding:0.55rem 0.7rem;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:var(--card);
+    color:var(--ink);
+    font-size:0.95rem;
+    font-family:inherit;
+  }
+  .rankbtn{
+    width:100%;
+    padding:0.55rem 0.7rem;
+    border:1px solid var(--moss);
+    border-radius:6px;
+    background:var(--moss);
+    color:#fff;
+    font-size:0.9rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    cursor:pointer;
+  }
+  #rankPanel{
+    display:none;
+    margin:0 1.25rem 1rem;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  .rankfilterrow{
+    display:none;
+    padding:0 1.25rem 0.75rem;
+  }
+  .rankfilterrow.show{display:block;}
+  .rankfilterrow select{
+    width:100%;
+    padding:0.5rem 0.6rem;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:var(--card);
+    color:var(--ink);
+    font-size:0.88rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  #rankPanel.show{display:block;}
+  .rankgroup{margin-bottom:1rem;}
+  .rankgroup:last-child{margin-bottom:0;}
+  .rankgroup h3{
+    font-size:0.85rem;
+    font-weight:600;
+    margin:0 0 0.4rem;
+    color:var(--moss-dark);
+  }
+  .rankitem{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-size:0.82rem;
+    padding:0.3rem 0;
+    border-bottom:1px solid #eee;
+  }
+  .rankitem:last-child{border-bottom:none;}
+  .rankpos{
+    display:inline-block;
+    width:1.3rem;
+    color:var(--gold);
+    font-weight:600;
+  }
+  .rankname{flex:1; padding:0 0.4rem;}
+  .rankscore{font-weight:600;}
+  .rankempty{
+    font-size:0.78rem;
+    color:var(--muted);
+    padding:0.3rem 0;
+  }
+  #count{
+    font-size:0.8rem;
+    color:var(--muted);
+    padding:0 1.25rem 0.5rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  #list{
+    padding:0 1.25rem;
+    display:flex;
+    flex-direction:column;
+    gap:0.75rem;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:0.85rem 1rem;
+  }
+  .card-top{
+    display:flex;
+    align-items:baseline;
+    gap:0.5rem;
+    margin-bottom:0.15rem;
+  }
+  .catno-badge{
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:0.72rem;
+    font-weight:700;
+    background:var(--moss-dark);
+    color:#fff;
+    padding:0.12rem 0.4rem;
+    border-radius:4px;
+    white-space:nowrap;
+  }
+  .handler{
+    font-size:1.02rem;
+    font-weight:600;
+    flex:1;
+  }
+  .tag{
+    font-size:0.72rem;
+    color:var(--muted);
+    white-space:nowrap;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  .dog{
+    font-size:0.85rem;
+    color:var(--moss-dark);
+    margin-bottom:0.15rem;
+  }
+  .doginfo{
+    font-size:0.75rem;
+    color:var(--muted);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    margin-bottom:0.5rem;
+  }
+  .sched{
+    font-size:0.78rem;
+    color:var(--muted);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    line-height:1.5;
+    margin-bottom:0.6rem;
+  }
+  .sched b{color:var(--ink); font-weight:600;}
+  .readscores{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0.4rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:0.85rem;
+  }
+  @media (max-width: 380px){
+    .readscores{
+      grid-template-columns:repeat(2, 1fr);
+    }
+  }
+  .readscores div{
+    background:#f2f0e8;
+    border-radius:5px;
+    padding:0.35rem 0.3rem;
+    text-align:center;
+  }
+  .readscores div.total-box{
+    background:#e8ecdf;
+  }
+  .readscores label{
+    display:block;
+    font-size:0.66rem;
+    color:var(--muted);
+    margin-bottom:0.1rem;
+  }
+  .readscores .total-val{
+    font-size:1.0rem;
+    font-weight:700;
+    color:var(--moss-dark);
+  }
+  .empty{
+    text-align:center;
+    color:var(--muted);
+    font-size:0.85rem;
+    padding:2rem 1rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>FCI IGP 2026 World Championship &mdash; Competitor & Results Tracker</h1>
+  <p>Search by country, breed, or handler/dog name. Scores are updated periodically as results come in.</p>
+  <p class="lastupdated">Last updated: <span id="lastUpdated"></span></p>
+</header>
+
+<div class="controls">
+  <select id="fCountry"><option value="">All countries</option></select>
+  <select id="fBreed"><option value="">All breeds</option></select>
+  <input id="fText" type="text" placeholder="Search by handler or dog name">
+  <select id="sortSel">
+    <option value="lot">Sort: Lot No.</option>
+    <option value="handler">Sort: Handler (A-Z)</option>
+  </select>
+  <button id="rankBtn" class="rankbtn">Ranking</button>
+</div>
+
+<div id="rankFilterRow" class="rankfilterrow">
+  <select id="rankCatSel">
+    <option value="all">Show TOP 3 for each (A/B/C/Overall)</option>
+    <option value="total">Overall — full ranking</option>
+    <option value="a">A (Tracking) — full ranking</option>
+    <option value="b">B (Obedience) — full ranking</option>
+    <option value="c">C (Protection) — full ranking</option>
+  </select>
+</div>
+
+<div id="rankPanel"></div>
+
+
+<div id="count"></div>
+<div id="list"></div>
+
+<script>
+const DATA = [["Ukraine", "UA", "UA-01", "Oksana Kuznietsova", "Vyatkins' TANTO", "Belgian Shepherd Dog (Malinois)", "male", "2021-07-28", "Wed 14:30", "Thu 14:15", "Sat 08:45"], ["Germany", "DE", "DE-04", "Emilie Höfner", "ICE MANGO vom Further Moor", "Belgian Shepherd Dog (Malinois)", "male", "2020-12-09", "Wed 14:30", "Thu 14:15", "Sat 08:55"], ["Poland", "PL", "PL-01", "Yulian Hatala", "HYPE iz Gratsiano", "Belgian Shepherd Dog (Malinois)", "male", "2020-12-01", "Wed 14:30", "Thu 14:40", "Sat 09:05"], ["Belgium", "BE", "BE-04", "Tom Willems", "UTEX Du Triangle Magique", "German Shepherd (Double Coat)", "male", "2021-12-20", "Wed 12:45", "Thu 14:40", "Sat 09:15"], ["Ukraine", "UA", "UA-02", "Olena Zhukova", "FRIGGA iz Roda Kimmeriyskih Psov", "Belgian Shepherd Dog (Malinois)", "female", "2021-01-18", "Wed 12:45", "Thu 15:05", "Sat 09:25"], ["United States", "US", "US-01", "Justen Haynes", "DIESEL vom Haus Ukres", "German Shepherd (Double Coat)", "male", "2020-10-28", "Wed 12:45", "Thu 15:05", "Sat 09:35"], ["Sweden", "SE", "SE-02", "Frida Wallén", "Karga Landets PÅLITLIGE DRAKE", "Belgian Shepherd Dog (Malinois)", "male", "2020-05-07", "Wed 09:30", "Thu 16:30", "Sat 11:00"], ["Portugal", "PT", "PT-01", "Ricardo Capucho", "BAXX JUNIOR Melcicka Bestia", "Belgian Shepherd Dog (Malinois)", "male", "2020-09-21", "Wed 09:30", "Thu 16:30", "Sat 11:10"], ["Poland", "PL", "PL-03", "Katarzyna Waniek", "CZORT Yucero Bohemia", "Belgian Shepherd Dog (Malinois)", "male", "2020-05-05", "Wed 09:30", "Thu 16:55", "Sat 11:20"], ["Greece", "GR", "GR-01", "Georgios Chatzakos", "ABRA Albus Habitat (FCI)", "Belgian Shepherd Dog (Malinois)", "female", "2019-05-30", "Wed 10:15", "Thu 16:55", "Sat 11:30"], ["Austria", "AT", "AT-02", "Gerold Scheyrer", "Cabazuka AKITO SENSEI", "Belgian Shepherd Dog (Malinois)", "male", "2021-11-07", "Wed 10:15", "Thu 17:20", "Sat 11:40"], ["Brazil", "BR", "BR-03", "Maurício Nunes", "Klassic-Allert WARRIOR", "Belgian Shepherd Dog (Malinois)", "male", "2019-03-29", "Wed 10:15", "Thu 17:20", "Sat 11:50"], ["Sweden", "SE", "SE-04", "Jan Svedberg", "ARNE", "Belgian Shepherd Dog (Malinois)", "male", "2021-07-12", "Wed 10:15", "Thu 07:30", "Sat 12:00"], ["Finland", "FI", "FI-02", "Tarja Parviainen", "Parendo Vinces GRISELDA MARCHBANKS", "Belgian Shepherd Dog (Malinois)", "female", "2021-01-21", "Wed 13:30", "Thu 07:30", "Sat 12:10"], ["Spain", "ES", "ES-04", "Begoña Lozano Atienzar", "HARMONIA de Ydre", "Belgian Shepherd Dog (Malinois)", "female", "2018-06-26", "Wed 13:30", "Thu 07:55", "Sat 13:35"], ["Spain", "ES", "ES-02", "Juan Carlos Moreda Sanchez", "HACHIS de Orelav", "Belgian Shepherd Dog (Malinois)", "male", "2022-02-22", "Wed 13:30", "Thu 07:55", "Sat 13:45"], ["United States", "US", "US-04", "Frank Phillips", "KLIFF vom Haus Vax", "German Shepherd (Double Coat)", "male", "2021-02-10", "Wed 13:30", "Thu 08:20", "Sat 13:55"], ["Brazil", "BR", "BR-02", "Pablo Ruiz", "Parendo Vinces FORTUNAE FILIUS", "Belgian Shepherd Dog (Malinois)", "male", "2019-05-15", "Wed 12:00", "Thu 08:20", "Sat 14:05"], ["United Kingdom", "GB", "GB-01", "Edmond Kan", "Hohenburg GON", "German Shepherd (Double Coat)", "male", "2021-03-27", "Wed 12:00", "Thu 09:45", "Sat 14:15"], ["Slovakia", "SK", "SK-05", "Eva Smädová", "CAI Notram", "German Shepherd (Double Coat)", "male", "2023-02-17", "Wed 12:00", "Thu 09:45", "Sat 14:25"], ["Finland", "FI", "FI-04", "Niina Puputti", "PERFECT ROCKET De La Rouquine", "Belgian Shepherd Dog (Tervueren)", "male", "2019-01-01", "Wed 08:45", "Thu 10:10", "Sat 15:50"], ["France", "FR", "FR-03", "Marina Cassier", "PEP'S Des Elflines De Gaelic", "Belgian Shepherd Dog (Malinois)", "male", "2019-11-17", "Wed 08:45", "Thu 10:10", "Sat 16:00"], ["Serbia", "RS", "RS-01", "Jelena Drvendzija", "CAYMAN Ex Pandorum", "Belgian Shepherd Dog (Malinois)", "male", "2020-11-17", "Wed 08:45", "Thu 10:35", "Sat 16:10"], ["United Arab Emirates", "AE", "AE-01", "Kateryna Morozova", "GRAND PRIX iz Gratsiano", "Belgian Shepherd Dog (Malinois)", "male", "2020-05-20", "Wed 08:00", "Thu 10:35", "Sat 16:20"], ["Sweden", "SE", "SE-05", "Camilla Rönnqvist", "Diragos MINAJ", "Doberman", "female", "2020-04-10", "Wed 08:00", "Thu 12:00", "Sat 16:30"], ["Brazil", "BR", "BR-01", "Marcos Rangel", "BIG BOSS Daxengel", "Belgian Shepherd Dog (Malinois)", "male", "2019-10-21", "Wed 08:00", "Thu 12:00", "Sat 16:40"], ["Poland", "PL", "PL-04", "Klaudia Firlej", "QREDO Vom Lausitzeck", "Belgian Shepherd Dog (Malinois)", "male", "2022-05-02", "Wed 11:15", "Thu 12:25", "Sat 16:50"], ["Belgium", "BE", "BE-01", "Bert Aerts", "TAYBO Van de Berlex-Hoeve", "Belgian Shepherd Dog (Malinois)", "male", "2020-08-22", "Wed 11:15", "Thu 12:25", "Sat 17:00"], ["United States", "US", "US-02", "Chris Bettin", "URRY z Daskonu", "German Shepherd (Double Coat)", "male", "2022-01-25", "Wed 11:15", "Thu 12:50", "Sat 17:10"], ["United States", "US", "US-03", "Elizabeth Aldrich", "ELAN de Casa Cubano", "Belgian Shepherd Dog (Malinois)", "male", "2021-01-28", "Sat 12:15", "Thu 12:50", "Wed 08:45"], ["Poland", "PL", "PL-05", "Mariusz Wyszyński", "DELTA vom Haus Seiffert", "Belgian Shepherd Dog (Malinois)", "female", "2020-07-30", "Sat 12:15", "Fri 12:25", "Wed 08:55"], ["Hungary", "HU", "HU-05", "Veronika Nagy", "BENGA Dragster Fox", "Belgian Shepherd Dog (Malinois)", "male", "2020-04-21", "Sat 13:00", "Fri 12:25", "Wed 09:05"], ["Slovenia", "SI", "SI-02", "Boštjan Polesnik", "CHIVAS Vimperški", "Belgian Shepherd Dog (Malinois)", "male", "2020-08-31", "Sat 13:00", "Fri 12:50", "Wed 09:15"], ["Sweden", "SE", "SE-03", "Christel Leiborn", "Wictorems STÅLMANNEN", "Belgian Shepherd Dog (Malinois)", "male", "2021-11-22", "Sat 13:00", "Fri 12:50", "Wed 09:25"], ["China", "CN", "CN-01", "Qingkai Wang", "HUANGYING Of Tong Tian Ai Quan's", "Belgian Shepherd Dog (Malinois)", "female", "2022-05-02", "Sat 13:45", "Fri 13:15", "Wed 09:35"], ["Italy", "IT", "IT-05", "Marco Giardini", "FERRO'S CHAZ Vom Gleinalmblick", "Giant Schnauzer", "male", "2020-12-10", "Sat 13:45", "Fri 13:15", "Wed 11:00"], ["Slovenia", "SI", "SI-01", "Rok Vrtačnik", "XERO Ostraryka", "Belgian Shepherd Dog (Malinois)", "male", "2023-01-27", "Sat 13:45", "Fri 15:55", "Wed 11:10"], ["China", "CN", "CN-03", "Xuehang Liu", "Zheng Dong JANUSCHKA", "Belgian Shepherd Dog (Malinois)", "male", "2019-07-26", "Sat 13:45", "Fri 15:55", "Wed 11:20"], ["Austria", "AT", "AT-05", "Jeanine Harand", "CAMPARI TWO-FACE vom schwarzen Phönix", "Belgian Shepherd Dog (Malinois)", "female", "2021-04-12", "Thu 10:15", "Fri 15:30", "Wed 11:30"], ["China", "CN", "CN-04", "Jianfeng Gao", "Tian Kong Yi Quan She PEDA", "Belgian Shepherd Dog (Malinois)", "male", "2021-10-22", "Thu 10:15", "Fri 15:30", "Wed 11:40"], ["Greece", "GR", "GR-02", "Apostolos Poulios", "DUUNI de Fontemordant", "Belgian Shepherd Dog (Malinois)", "male", "2019-10-05", "Thu 10:15", "Fri 15:05", "Wed 11:50"], ["Greece", "GR", "GR-03", "Giannis Vasileiou", "JAGGER von Bradenton", "Belgian Shepherd Dog (Malinois)", "male", "2022-07-20", "Thu 09:30", "Fri 15:05", "Wed 13:15"], ["China", "CN", "CN-02", "Duosheng Li", "Tian Kong Yi Quan She ULINDE", "Belgian Shepherd Dog (Malinois)", "male", "2021-10-22", "Thu 09:30", "Fri 14:40", "Wed 13:25"], ["Germany", "DE", "DE-02", "Klaus Gedicke", "ANTON von der lichten Tanne", "German Shepherd (Double Coat)", "male", "2019-05-18", "Thu 09:30", "Fri 14:40", "Wed 13:35"], ["Japan", "JP", "JP-01", "Mayumi Mitsuki", "SAETTA von Schatzchen JP", "Belgian Shepherd Dog (Malinois)", "female", "2021-10-12", "Thu 08:45", "Fri 10:10", "Wed 13:45"], ["Latvia", "LV", "LV-02", "Māris Krūmiņš", "HENDO Oger Schloss", "German Shepherd (Double Coat)", "male", "2021-06-28", "Thu 08:45", "Fri 10:10", "Wed 13:55"], ["United States", "US", "US-WC", "Susan Miller", "Nati's Empower NYLES", "Belgian Shepherd Dog (Malinois)", "male", "2019-09-07", "Thu 08:45", "Fri 10:35", "Wed 14:05"], ["China", "CN", "CN-05", "Erjie Kang", "De Magic China WALIA", "Belgian Shepherd Dog (Malinois)", "male", "2020-01-30", "Thu 08:00", "Fri 10:35", "Wed 15:30"], ["Austria", "AT", "AT-04", "Paul Woschitz", "Nati's Empower N'MADDOX", "Belgian Shepherd Dog (Malinois)", "male", "2019-09-07", "Thu 08:00", "Fri 11:00", "Wed 15:40"], ["Canada", "CA", "CA-03", "Chris Neill", "BENNI vom Felsen", "German Shepherd (Double Coat)", "female", "2021-01-12", "Thu 08:00", "Fri 11:00", "Wed 15:50"], ["Netherlands", "NL", "NL-04", "Ed Brands", "FLINN von Semrowplatz", "German Shepherd (Double Coat)", "male", "2020-12-10", "Thu 11:00", "Fri 07:30", "Wed 16:00"], ["France", "FR", "FR-02", "Jean-Jacques Pilaete", "SVANA Du Gardien Du Val De Sambre", "Belgian Shepherd Dog (Malinois)", "female", "2021-05-22", "Thu 11:00", "Fri 07:30", "Wed 16:10"], ["Canada", "CA", "CA-05", "Amjad Moheb Alden", "Lyutomali ASTRO", "Belgian Shepherd Dog (Malinois)", "male", "2021-05-22", "Thu 11:00", "Fri 07:55", "Wed 16:20"], ["Belgium", "BE", "BE-03", "Bruno Klich", "Rocarzja URRY", "German Shepherd (Double Coat)", "male", "2021-06-14", "Thu 11:45", "Fri 07:55", "Wed 18:10"], ["Czech Rep.", "CZ", "CZ-03", "Jakub Faltus", "DAKAR Jambazi", "German Shepherd (Double Coat)", "male", "2022-02-15", "Thu 11:45", "Fri 08:20", "Wed 18:20"], ["Germany", "DE", "DE-05", "Christine Schmidt", "BELLA BIXE vom Langenauer Forst", "German Shepherd (Double Coat)", "female", "2021-09-22", "Thu 11:45", "Fri 08:20", "Wed 18:30"], ["Canada", "CA", "CA-01", "Sukhjivan Binning", "EZ Tigerhill", "German Shepherd (Double Coat)", "male", "2020-06-29", "Thu 11:45", "Fri 08:45", "Wed 18:40"], ["Italy", "IT", "IT-02", "Danilo Maccan", "XOLTAN Vom Gsiberger", "Belgian Shepherd Dog (Malinois)", "male", "2019-11-19", "Thu 12:45", "Fri 08:45", "Wed 18:50"], ["Belgium", "BE", "BE-05", "David Estievenart", "TOROUK MAKTO Du Bois St-Landelin", "Belgian Shepherd Dog (Malinois)", "male", "2020-07-30", "Thu 12:45", "Sat 17:20", "Sun 12:00"], ["Czech Rep.", "CZ", "CZ-01", "Lukáš Hodan", "LEEROY Bohemia Felicitas", "Belgian Shepherd Dog (Malinois)", "male", "2021-12-07", "Thu 12:45", "Sat 17:20", "Sun 12:10"], ["Croatia", "HR", "HR-02", "Peter Maša", "ULIX Od Moslavine", "Belgian Shepherd Dog (Malinois)", "male", "2022-03-02", "Thu 12:45", "Sat 17:45", "Sun 12:20"], ["Spain", "ES", "ES-05", "Jose Ramon Lazo Garcia", "HIP HIP HURRAY SGA Team (FCI)", "German Shepherd (Double Coat)", "male", "2021-04-25", "Thu 13:45", "Sat 17:45", "Sun 12:30"], ["Switzerland", "CH", "CH-05", "Birgit Urbons", "LORCAN the Flying Eagle", "Belgian Shepherd Dog (Malinois)", "male", "2021-08-08", "Thu 13:45", "Sat 07:30", "Fri 13:40"], ["Sweden", "SE", "SE-01", "Eva Jansson", "Wictorems HULKEN", "Belgian Shepherd Dog (Malinois)", "male", "2021-11-22", "Thu 13:45", "Sat 07:30", "Fri 13:50"], ["Slovakia", "SK", "SK-02", "Eva Panáková", "ARES spod Čerenca", "German Shepherd (Double Coat)", "male", "2019-07-02", "Thu 14:30", "Sat 09:45", "Fri 14:00"], ["Germany", "DE", "DE-WC", "Ronny Bauer", "KESSIE vom Kinzigtal", "Rottweiler", "female", "2020-04-03", "Thu 14:30", "Sat 09:45", "Fri 14:10"], ["Latvia", "LV", "LV-04", "Ilze Freimane", "MOBY DICK Vikar", "German Shepherd (Double Coat)", "male", "2021-09-22", "Thu 14:30", "Sat 10:10", "Fri 14:20"], ["Hungary", "HU", "HU-04", "Fanni Fenyővalfiné", "RAGNAR de la Scytha", "Belgian Shepherd Dog (Malinois)", "male", "2022-05-15", "Thu 15:15", "Sat 10:10", "Fri 14:30"], ["Switzerland", "CH", "CH-03", "Daniel Wolfmaier", "EYROCK vom Möhrendorfer Wasserrad", "Belgian Shepherd Dog (Malinois)", "male", "2022-03-20", "Thu 15:15", "Sat 10:35", "Fri 15:50"], ["France", "FR", "FR-01", "Eric Lapointe", "SAIKO Brave Koeur of Ice", "Belgian Shepherd Dog (Malinois)", "male", "2021-10-11", "Thu 15:15", "Sat 10:35", "Fri 16:20"], ["Slovakia", "SK", "SK-03", "Marek Slámka", "DARWY Portov dvor", "German Shepherd (Double Coat)", "male", "2019-02-18", "Thu 16:00", "Sat 12:20", "Fri 16:30"], ["Hungary", "HU", "HU-01", "Gergely Váry", "Everburning flame ARGOS AVELAR", "Belgian Shepherd Dog (Malinois)", "male", "2021-07-25", "Thu 16:00", "Sat 12:20", "Fri 16:40"], ["Czech Rep.", "CZ", "CZ-04", "Jan Böhm", "C'RAPPER King Regent", "Belgian Shepherd Dog (Malinois)", "male", "2020-10-22", "Thu 16:00", "Sat 12:45", "Fri 16:50"], ["Finland", "FI", "FI-03", "Petra Nieminen", "Way Out West NAPOLÉON BONAPARTE", "Belgian Shepherd Dog (Malinois)", "male", "2019-07-29", "Thu 16:45", "Sat 12:45", "Fri 17:00"], ["France", "FR", "FR-04", "Jacky Rebillard", "PARIS Du Banc Des Hermelles", "Belgian Shepherd Dog (Malinois)", "male", "2019-03-22", "Thu 16:45", "Sat 13:10", "Fri 17:10"], ["United Kingdom", "GB", "GB-03", "Anna Garber", "Vomatschenka VIXEN", "German Shepherd (Double Coat)", "female", "2022-01-20", "Thu 16:45", "Sat 13:10", "Fri 17:20"], ["Austria", "AT", "AT-03", "Christine Wippel", "QUATTRO Adlerburg von Ungarn", "Belgian Shepherd Dog (Malinois)", "male", "2021-03-10", "Fri 08:00", "Sat 14:35", "Sun 11:20"], ["Czech Rep.", "CZ", "CZ-05", "Alice Nelibová", "NICO z Lomeckého polesí", "German Shepherd (Double Coat)", "male", "2019-01-28", "Fri 08:00", "Sat 15:00", "Sun 11:30"], ["Switzerland", "CH", "CH-01", "Tanja Lutz", "TOXIC vom Haus Vax", "German Shepherd (Double Coat)", "female", "2022-08-13", "Fri 08:00", "Sat 15:00", "Sun 11:40"], ["Israel", "IL", "IL-01", "Sharon Ronen", "BA-LI Beit Ronen", "Belgian Shepherd Dog (Malinois)", "female", "2020-10-31", "Fri 08:45", "Sat 15:25", "Sun 11:50"], ["Finland", "FI", "FI-01", "Krista Saari", "Parendo Vinces HARRY POTTER", "Belgian Shepherd Dog (Malinois)", "male", "2023-05-12", "Fri 08:45", "Sat 15:25", "Sun 09:55"], ["Netherlands", "NL", "NL-02", "Co How", "CHASE von der Löwenstadt", "German Shepherd (Double Coat)", "male", "2020-07-26", "Fri 08:45", "Sat 07:55", "Sun 09:45"], ["Netherlands", "NL", "NL-03", "Bep Boon", "TIKA van het Haagse Bloed", "Belgian Shepherd Dog (Malinois)", "female", "2019-11-05", "Fri 12:45", "Sat 07:55", "Sun 08:45"], ["North Macedonia", "MK", "MK-01", "Adam Brzev", "Sila von der Lotrek", "Belgian Shepherd Dog (Malinois)", "female", "2022-05-24", "Fri 12:45", "Sat 08:20", "Sun 08:55"], ["Bulgaria", "BG", "BG-04", "Sabine Gleinzer", "ARAGORN von Exodia", "Doberman", "male", "2022-03-26", "Fri 12:45", "Sat 08:20", "Sun 09:05"], ["Japan", "JP", "JP-03", "Kaoru Shimada", "BRUTE VON T.Y. Tsukuba", "German Shepherd (Double Coat)", "male", "2020-06-24", "Fri 10:30", "Wed 14:15", "Sun 09:15"], ["Netherlands", "NL", "NL-01", "Ellen Bronsema", "JARAK PERRO de la Casa Negra", "Belgian Shepherd Dog (Groenendael)", "male", "2020-01-11", "Fri 10:30", "Wed 14:15", "Sun 09:25"], ["Denmark", "DK", "DK-WC", "Niels Jensen", "Briska's ORRY", "Doberman", "male", "2020-07-20", "Fri 10:30", "Wed 14:40", "Sun 09:35"], ["United States", "US", "US-05", "Susan Curci", "DALI vom Mittelpunkt", "Belgian Shepherd Dog (Malinois)", "male", "2019-10-14", "Fri 11:15", "Wed 14:40", "Thu 08:45"], ["Singapore", "SG", "SG-01", "Randy Seow", "Von Raj Crunchie ZELDA", "Belgian Shepherd Dog (Malinois)", "female", "2020-06-22", "Fri 11:15", "Wed 15:05", "Thu 08:55"], ["Slovakia", "SK", "SK-04", "Pavol Šlahor", "EDWARD Ad-Gür", "Belgian Shepherd Dog (Malinois)", "male", "2022-03-09", "Fri 11:15", "Wed 15:05", "Thu 09:05"], ["Denmark", "DK", "DK-03", "Benny Boesen", "Kongeskoven´s YARI", "German Shepherd (Double Coat)", "male", "2019-05-01", "Fri 12:00", "Wed 16:30", "Thu 09:15"], ["Poland", "PL", "PL-02", "Jarosław Gracz", "HANCOCK von Blackmoore", "Giant Schnauzer", "male", "2021-04-19", "Fri 12:00", "Wed 16:30", "Thu 09:25"], ["Hungary", "HU", "HU-03", "József Pityinger", "AKEEM Yucero Bohemia", "Belgian Shepherd Dog (Malinois)", "male", "2018-09-12", "Fri 12:00", "Wed 16:55", "Thu 09:35"], ["Croatia", "HR", "HR-01", "Damir Bernaca", "GEORGE CLOONEY Is Always Crazy", "Belgian Shepherd Dog (Malinois)", "male", "2021-10-25", "Fri 09:30", "Wed 16:55", "Thu 11:00"], ["Germany", "DE", "DE-03", "Lars Bloem", "DRAGO von Akanda", "German Shepherd (Double Coat)", "male", "2021-10-07", "Fri 09:30", "Wed 17:20", "Thu 11:10"], ["Hungary", "HU", "HU-02", "Ferenc Suszter", "CODY von Kalpyso Land", "Belgian Shepherd Dog (Malinois)", "male", "2020-06-16", "Fri 09:30", "Wed 17:20", "Thu 11:20"], ["Belgium", "BE", "BE-02", "Jesse Thomas", "IRY Von Den Mecklenburger Rüpeln", "Belgian Shepherd Dog (Malinois)", "male", "2019-10-03", "Fri 09:30", "Wed 17:45", "Thu 11:30"], ["Canada", "CA", "CA-02", "Shanon Rawlinson", "FLASH vom Gsiberger", "German Shepherd (Double Coat)", "male", "2019-09-21", "Fri 13:30", "Wed 17:45", "Thu 11:40"], ["Italy", "IT", "IT-04", "Alessandro Moccia", "VIKAR", "Doberman", "male", "2020-11-25", "Fri 13:30", "Wed 07:30", "Thu 11:50"], ["Argentina", "AR", "AR-01", "Juan Facundo Leiva", "HAPPY von Anauj Haus", "Belgian Shepherd Dog (Malinois)", "male", "2020-05-21", "Fri 13:30", "Wed 07:30", "Thu 13:15"], ["Bulgaria", "BG", "BG-01", "Natalia Balabanov", "Parendo Vinces GLINDA CROOK", "Belgian Shepherd Dog (Malinois)", "female", "2021-01-21", "Fri 13:30", "Wed 07:55", "Thu 13:25"], ["Denmark", "DK", "DK-01", "Anja Sørensen", "Jabina ORHI", "German Shepherd (Double Coat)", "female", "2021-08-08", "Fri 14:30", "Wed 07:55", "Thu 13:35"], ["Czech Rep.", "CZ", "CZ-02", "Pavel Hrobař", "Vyatkins' JIMMY", "Belgian Shepherd Dog (Malinois)", "male", "2019-05-18", "Fri 14:30", "Wed 08:20", "Thu 13:45"], ["Bulgaria", "BG", "BG-02", "Ivan Balabanov", "TARZAN Ot Vitosha", "Belgian Shepherd Dog (Malinois)", "male", "2021-07-15", "Fri 14:30", "Wed 08:20", "Thu 13:55"], ["Canada", "CA", "CA-04", "Leigh Bianco", "KENZO iz Gratsiano", "Belgian Shepherd Dog (Malinois)", "female", "2022-10-10", "Fri 15:15", "Wed 09:45", "Thu 14:05"], ["Spain", "ES", "ES-01", "Iñigo Sierra Gala", "LEVI v.d. Mecklenburger Rüpeln", "Belgian Shepherd Dog (Malinois)", "male", "2021-04-06", "Fri 15:15", "Wed 09:45", "Thu 15:30"], ["Spain", "ES", "ES-WC", "Iria Gómez Martínez", "ARKAN de Binomium's", "Belgian Shepherd Dog (Malinois)", "male", "2019-05-09", "Fri 15:15", "Wed 10:10", "Thu 15:40"], ["Estonia", "EE", "EE-02", "Inger Kuus", "REMUS von Erikson", "Airedale terrier", "male", "2018-10-18", "Fri 16:00", "Wed 10:10", "Thu 15:50"], ["Switzerland", "CH", "CH-02", "Aaron Rubitschung", "ZIRO vom Holzhäuser Flur", "Belgian Shepherd Dog (Malinois)", "male", "2020-09-23", "Fri 16:00", "Wed 10:35", "Thu 16:00"], ["Estonia", "EE", "EE-01", "Greta Rüütel", "HARMAAHURSTIN MÖRKÖMARKO", "Belgian Shepherd Dog (Malinois)", "male", "2023-02-06", "Fri 16:00", "Wed 10:35", "Thu 16:10"], ["Italy", "IT", "IT-01", "Davide Dodi", "Vom Teldra DEMON", "Belgian Shepherd Dog (Malinois)", "male", "2020-07-23", "Sat 08:00", "Wed 12:00", "Thu 16:20"], ["Brazil", "BR", "BR-04", "Márcio Cerqueira", "OGGRO do Vale do Itaim", "Belgian Shepherd Dog (Malinois)", "male", "2020-11-21", "Sat 08:00", "Wed 12:00", "Thu 17:45"], ["Latvia", "LV", "LV-01", "Pēteris Akimovs", "BERSERKER Manlihaus", "Belgian Shepherd Dog (Malinois)", "male", "2023-04-11", "Sat 08:00", "Wed 12:25", "Thu 17:55"], ["Slovenia", "SI", "SI-04", "Gregor Mogu", "IMPERATOR Force Canina", "Belgian Shepherd Dog (Malinois)", "male", "2024-02-02", "Sat 08:45", "Wed 12:25", "Thu 18:05"], ["Slovakia", "SK", "SK-01", "Jozef Adamuščin", "BUNNY Kamodogs", "German Shepherd (Double Coat)", "male", "2023-07-10", "Sat 08:45", "Wed 12:50", "Thu 18:15"], ["Italy", "IT", "IT-03", "Marco Mannara", "GOOBY DOO Chetan Soul", "Belgian Shepherd Dog (Malinois)", "male", "2020-02-21", "Sat 08:45", "Wed 12:50", "Thu 18:25"], ["Slovenia", "SI", "SI-03", "Katarina Zver", "DRAGONHEART GIGI Marenberska", "Belgian Shepherd Dog (Malinois)", "female", "2019-08-16", "Sat 08:45", "Sun 10:55", "Fri 09:10"], ["Japan", "JP", "JP-02", "Chie Suzuki", "KEVIN OF Brave House JP", "Belgian Shepherd Dog (Malinois)", "male", "2022-03-30", "Sat 10:30", "Sun 10:55", "Fri 09:20"], ["Bulgaria", "BG", "BG-03", "Stefan Gelimachev", "CHILI ot Dachevski", "Belgian Shepherd Dog (Malinois)", "female", "2016-07-17", "Sat 10:30", "Sun 10:30", "Fri 09:30"], ["Switzerland", "CH", "CH-04", "Claudia Frey", "C'CHILLY CENGA Calcata", "Belgian Shepherd Dog (Malinois)", "female", "2019-12-28", "Sat 10:30", "Sun 10:30", "Fri 09:40"], ["Croatia", "HR", "HR-03", "Ivana Bertonja", "ZITA Running Wild", "Belgian Shepherd Dog (Malinois)", "female", "2021-01-12", "Sat 10:30", "Sun 10:05", "Fri 09:50"], ["Ukraine", "UA", "UA-03", "Oleksandr Babenko", "LOZA Hundehaus Sandgrube", "German Shepherd (Double Coat)", "female", "2020-02-10", "Sat 09:45", "Sun 10:05", "Fri 10:00"], ["Denmark", "DK", "DK-02", "Mette Møller Larsen", "Metla's KENYA", "German Shepherd (Double Coat)", "female", "2020-04-21", "Sat 09:45", "Sun 07:30", "Fri 11:25"], ["Germany", "DE", "DE-01", "Florian Knabl", "Primus Proeliator MORPHEUS", "Belgian Shepherd Dog (Malinois)", "male", "2022-06-04", "Sat 09:45", "Sun 07:30", "Fri 11:35"], ["Portugal", "PT", "PT-02", "Vanessa Cruz", "PIXEL Costa da Morte", "Dutch Shepherd Dog (short-haired)", "male", "2022-06-06", "Sat 11:30", "Sun 07:55", "Fri 11:45"], ["Spain", "ES", "ES-03", "Lorenzo Jurado Lopez", "EKIA De Scofos", "Belgian Shepherd Dog (Malinois)", "female", "2021-10-20", "Sat 11:30", "Sun 07:55", "Fri 11:55"], ["Austria", "AT", "AT-01", "Christian Singer", "LECTER vom Further Moor", "Belgian Shepherd Dog (Malinois)", "male", "2022-01-26", "Sat 11:30", "Sun 08:20", "Fri 12:05"], ["Argentina", "AR", "AR-02", "Soledad Bofill", "BAZUKA Nirreterrit", "German Shepherd (Double Coat)", "female", "2019-01-12", "Sat 12:15", "Sun 08:20", "Fri 12:15"], ["Romania", "RO", "RO-01", "Filip Oprisan", "Romano IUNONA-JUNO heat", "Belgian Shepherd Dog (Malinois)", "female", "2022-04-16", "Fri 16:45", "Sun 13:40", "Sun 15:05"], ["Latvia", "LV", "LV-03", "Evija Mankopa", "BE DIAMOND Manlihaus heat", "Belgian Shepherd Dog (Malinois)", "female", "2023-04-11", "Fri 16:45", "Sun 13:40", "Sun 15:15"], ["Romania", "RO", "RO-02", "Florin Predescu", "Julius Canis DAMORA heat", "Belgian Shepherd Dog (Malinois)", "female", "2021-07-06", "Fri 16:45", "Sun 14:05", "Sun 15:25"], ["Latvia", "LV", "LV-05", "Gaļina Matvejeva", "GOUACHE iz Gratsiano heat", "Belgian Shepherd Dog (Malinois)", "female", "2020-05-07", "Fri 16:45", "Sun 14:05", "Sun 15:35"]];
+function flagEmoji(iso){
+  if(!iso || iso.length!==2) return '';
+  return String.fromCodePoint(...[...iso.toUpperCase()].map(c => 127397 + c.charCodeAt(0)));
+}
+
+function calcAge(dobStr){
+  const dob = new Date(dobStr);
+  const now = new Date();
+  let years = now.getFullYear() - dob.getFullYear();
+  let months = now.getMonth() - dob.getMonth();
+  if(now.getDate() < dob.getDate()) months -= 1;
+  if(months < 0){ years -= 1; months += 12; }
+  return years + 'y ' + months + 'm';
+}
+
+const catnoIndex = {};
+DATA.forEach(d => { catnoIndex[d[2]] = d; });
+
+// The DATA array order matches the official Starting List order (fciigp2026.fci.systems/shedule1.php),
+// where each competitor has one fixed lot number (1-133) used across all three disciplines (A/B/C).
+const lotIndex = {};
+DATA.forEach((d, i) => { lotIndex[d[2]] = i + 1; });
+
+const countries = [...new Map(DATA.map(d => [d[0], d[1]])).entries()].sort((a,b)=>a[0].localeCompare(b[0]));
+const breeds = [...new Set(DATA.map(d => d[5]))].sort();
+const cSel = document.getElementById('fCountry');
+const bSel = document.getElementById('fBreed');
+countries.forEach(([name, iso]) => {
+  const o=document.createElement('option');
+  o.value=name;
+  o.textContent = flagEmoji(iso) + ' ' + name;
+  cSel.appendChild(o);
+});
+breeds.forEach(b => { const o=document.createElement('option'); o.value=b; o.textContent=b; bSel.appendChild(o); });
+const rankCatSel = document.getElementById('rankCatSel');
+
+// Known scores read from PDF results, updated here in chat as new results come in.
+// Values are '' when a leg hasn't been scored yet.
+// Update this each time scores are edited here in chat.
+const LAST_UPDATED = '2026-09-09 19:23 (JST)';
+
+const SCORES = {
+  'BG-01': {a: '', b: 92, c: ''},
+  'CZ-02': {a: '', b: 91, c: ''},
+  'BG-02': {a: '', b: 88, c: ''},
+  'US-03': {a: '', b: '', c: 87},
+  'AR-01': {a: '', b: 86, c: ''},
+  'IT-04': {a: '', b: 85, c: ''},
+  'PL-05': {a: '', b: '', c: 84},
+  'HU-05': {a: '', b: '', c: 82},
+  'DK-01': {a: '', b: 80, c: ''},
+  'SI-02': {a: '', b: '', c: 74},
+  'PL-03': {a: 91, b: '', c: ''},
+  'RS-01': {a: 90, b: '', c: ''},
+  'BR-01': {a: 86, b: '', c: ''},
+  'SE-03': {a: '', b: '', c: 81},
+  'CN-01': {a: '', b: '', c: 81},
+  'SE-04': {a: 81, b: '', c: ''},
+  'SE-02': {a: 80, b: '', c: ''},
+  'FI-04': {a: 73, b: '', c: ''},
+  'FR-03': {a: 53, b: '', c: ''},
+  'SE-05': {a: 44, b: '', c: ''},
+  'AE-01': {a: 36, b: '', c: ''},
+  'CA-04': {a: '', b: 93, c: ''},
+  'CH-02': {a: '', b: 93, c: ''},
+  'ES-01': {a: '', b: 92, c: ''},
+  'ES-WC': {a: '', b: 89, c: ''},
+  'EE-01': {a: '', b: 85, c: ''},
+  'GR-01': {a: 82, b: '', c: ''},
+  'AT-02': {a: 82, b: '', c: ''},
+  'EE-02': {a: '', b: 75, c: ''},
+  'BR-03': {a: 52, b: '', c: ''},
+  'BE-01': {a: 94, b: '', c: ''},
+  'PL-04': {a: 46, b: '', c: ''},
+  'CN-04': {a: '', b: '', c: 95},
+  'CN-03': {a: '', b: '', c: 89},
+  'IT-05': {a: '', b: '', c: 83},
+  'GR-02': {a: '', b: '', c: 79},
+  'AT-05': {a: '', b: '', c: 78},
+  'SI-01': {a: '', b: '', c: 77}
+};
+
+function getScore(catno){
+  const s = LIVE_SCORES[catno];
+  if(!s) return {a:'', b:'', c:'', total:''};
+  const a = s.a === undefined || s.a === null ? '' : String(s.a);
+  const b = s.b === undefined || s.b === null ? '' : String(s.b);
+  const c = s.c === undefined || s.c === null ? '' : String(s.c);
+  const total = (a===''||b===''||c==='') ? '' : (Number(a)+Number(b)+Number(c)).toFixed(1);
+  return {a, b, c, total};
+}
+
+// LIVE_SCORES starts as a copy of the fallback SCORES above, and is selectively
+// overwritten leg-by-leg with data from the official GitHub JSON feed if it loads
+// successfully. If the fetch fails for any reason, LIVE_SCORES simply stays as
+// the fallback and the page behaves exactly as before.
+const LIVE_SCORES = JSON.parse(JSON.stringify(SCORES));
+let liveLastUpdated = null;
+
+function mergeOfficialScores(json){
+  if(!json || typeof json !== 'object') return;
+  // Accept either {"BE-01": {...}, ...} directly, or {"scores": {...}, "lastUpdated": "..."}
+  const scoreMap = (json.scores && typeof json.scores === 'object') ? json.scores : json;
+  if(json.lastUpdated && typeof json.lastUpdated === 'string' && json.lastUpdated.trim() !== ''){
+    liveLastUpdated = json.lastUpdated;
+  }
+  for(const catno in scoreMap){
+    const incoming = scoreMap[catno];
+    if(!incoming || typeof incoming !== 'object') continue;
+    if(!LIVE_SCORES[catno]) LIVE_SCORES[catno] = {a: '', b: '', c: ''};
+    for(const leg of ['a', 'b', 'c']){
+      const val = incoming[leg];
+      if(val !== undefined && val !== null && val !== ''){
+        LIVE_SCORES[catno][leg] = val;
+      }
+    }
+  }
+}
+
+async function fetchOfficialScores(){
+  try{
+    const url = 'scores.json?t=' + Date.now();
+    const res = await fetch(url, { cache: 'no-store' });
+    if(!res.ok) return;
+    const json = await res.json();
+    mergeOfficialScores(json);
+    if(liveLastUpdated){
+      const el = document.getElementById('lastUpdated');
+      if(el) el.textContent = liveLastUpdated;
+    }
+    render();
+    if(document.getElementById('rankPanel').classList.contains('show')){
+      showRankings();
+    }
+  }catch(e){
+    // Network error, bad JSON, offline, etc. — silently keep the fallback data.
+  }
+}
+
+function rankListHTML(entries, scoreKey){
+  if(entries.length === 0){
+    return '<div class="rankempty">No scores entered yet</div>';
+  }
+  const medals = ['🥇','🥈','🥉'];
+  return entries.map((e, i) => `
+    <div class="rankitem">
+      <span><span class="rankpos">${medals[i] || (i+1)}</span><span class="rankname">${e.handler}(${e.country})</span></span>
+      <span class="rankscore">${e[scoreKey]}</span>
+    </div>
+  `).join('');
+}
+
+function showRankings(){
+  const merged = [];
+  for(const catno in catnoIndex){
+    const info = catnoIndex[catno];
+    const s = getScore(catno);
+    merged.push({
+      catno,
+      handler: info[3],
+      country: info[0],
+      a: s.a === '' ? null : Number(s.a),
+      b: s.b === '' ? null : Number(s.b),
+      c: s.c === '' ? null : Number(s.c),
+      total: s.total === '' ? null : Number(s.total)
+    });
+  }
+
+  const mode = rankCatSel.value;
+  const panel = document.getElementById('rankPanel');
+  const labels = {total: 'Overall', a: 'A (Tracking)', b: 'B (Obedience)', c: 'C (Protection)'};
+
+  if(mode === 'all'){
+    const topA = merged.filter(m => m.a !== null).sort((x,y)=>y.a-x.a).slice(0,3).map(m=>({...m, a: m.a.toFixed(1)}));
+    const topB = merged.filter(m => m.b !== null).sort((x,y)=>y.b-x.b).slice(0,3).map(m=>({...m, b: m.b.toFixed(1)}));
+    const topC = merged.filter(m => m.c !== null).sort((x,y)=>y.c-x.c).slice(0,3).map(m=>({...m, c: m.c.toFixed(1)}));
+    const topTotal = merged.filter(m => m.total !== null).sort((x,y)=>y.total-x.total).slice(0,3).map(m=>({...m, total: m.total.toFixed(1)}));
+    panel.innerHTML = `
+      <div class="rankgroup">
+        <h3>Overall TOP 3</h3>
+        ${rankListHTML(topTotal, 'total')}
+      </div>
+      <div class="rankgroup">
+        <h3>A (Tracking) TOP3</h3>
+        ${rankListHTML(topA, 'a')}
+      </div>
+      <div class="rankgroup">
+        <h3>B (Obedience) TOP3</h3>
+        ${rankListHTML(topB, 'b')}
+      </div>
+      <div class="rankgroup">
+        <h3>C (Protection) TOP3</h3>
+        ${rankListHTML(topC, 'c')}
+      </div>
+    `;
+  }else{
+    const full = merged.filter(m => m[mode] !== null).sort((x,y)=>y[mode]-x[mode]).map(m=>({...m, [mode]: m[mode].toFixed(1)}));
+    panel.innerHTML = `
+      <div class="rankgroup">
+        <h3>${labels[mode]} — Full ranking</h3>
+        ${rankListHTML(full, mode)}
+      </div>
+    `;
+  }
+}
+
+document.getElementById('rankBtn').addEventListener('click', ()=>{
+  const panel = document.getElementById('rankPanel');
+  const willShow = !panel.classList.contains('show');
+  const filterRow = document.getElementById('rankFilterRow');
+  if(willShow){
+    panel.classList.add('show');
+    filterRow.classList.add('show');
+    showRankings();
+    document.getElementById('rankBtn').textContent = 'Hide Ranking';
+  }else{
+    panel.classList.remove('show');
+    filterRow.classList.remove('show');
+    document.getElementById('rankBtn').textContent = 'Ranking';
+  }
+});
+
+rankCatSel.addEventListener('change', showRankings);
+
+function render(){
+  const country = cSel.value;
+  const breed = bSel.value;
+  const text = document.getElementById('fText').value.trim().toLowerCase();
+  const rows = DATA.filter(d=>{
+    if(country && d[0]!==country) return false;
+    if(breed && d[5]!==breed) return false;
+    if(text && !(d[3].toLowerCase().includes(text) || d[4].toLowerCase().includes(text))) return false;
+    return true;
+  });
+  const sortMode = document.getElementById('sortSel').value;
+  if(country){
+    // When a country is selected, always order by catalog number (e.g. BG-01, BG-02, ...)
+    rows.sort((x,y)=> x[2].localeCompare(y[2], undefined, {numeric:true}));
+  }else if(sortMode === 'handler'){
+    rows.sort((x,y)=> x[3].localeCompare(y[3]));
+  }else{
+    rows.sort((x,y)=> lotIndex[x[2]] - lotIndex[y[2]]);
+  }
+  document.getElementById('count').textContent = rows.length + ' results';
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+
+  if(rows.length===0){
+    list.innerHTML = '<div class="empty">No matching competitors</div>';
+    return;
+  }
+
+  for(const d of rows){
+    const [country, iso, catno, handler, dog, breed, gender, dob, a_time, b_time, c_time] = d;
+    const saved = getScore(catno);
+    const card = document.createElement('div');
+    card.className = 'card';
+    const aVal = saved.a;
+    const bVal = saved.b;
+    const cVal = saved.c;
+    const totVal = saved.total;
+    const genderLabel = gender === 'male' ? 'Male' : 'Female';
+    const age = calcAge(dob);
+
+    const scoreSection = `
+      <div class="readscores">
+        <div><label>A (Tracking)</label>${aVal || '—'}</div>
+        <div><label>B (Obedience)</label>${bVal || '—'}</div>
+        <div><label>C (Protection)</label>${cVal || '—'}</div>
+        <div class="total-box"><label>TOTAL</label><span class="total-val">${totVal || '—'}</span></div>
+      </div>
+    `;
+
+    card.innerHTML = `
+      <div class="card-top">
+        <span class="catno-badge">No. ${lotIndex[catno]}</span>
+        <span class="handler">${handler}</span>
+        <span class="tag">${flagEmoji(iso)} ${country} / ${catno}</span>
+      </div>
+      <div class="dog">${dog}</div>
+      <div class="doginfo">${breed} &middot; ${genderLabel} &middot; ${age} (DOB ${dob})</div>
+      <div class="sched">A (Tracking) <b>${a_time}</b> &nbsp;/&nbsp; B (Obedience) <b>${b_time}</b> &nbsp;/&nbsp; C (Protection) <b>${c_time}</b></div>
+      ${scoreSection}
+    `;
+
+    list.appendChild(card);
+  }
+}
+
+cSel.addEventListener('change', render);
+bSel.addEventListener('change', render);
+document.getElementById('fText').addEventListener('input', render);
+document.getElementById('sortSel').addEventListener('change', render);
+
+render();
+document.getElementById('lastUpdated').textContent = LAST_UPDATED;
+fetchOfficialScores();
+</script>
+</body>
+</html>
