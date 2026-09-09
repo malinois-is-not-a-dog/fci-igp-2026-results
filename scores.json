@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-10 00:35 (JST)",
+  "lastUpdated": "2026-09-10 00:47 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -144,25 +144,32 @@
       "a": 73
     },
     "FR-03": {
-      "a": 53
+      "a": 53,
+      "rating": "Insufficient"
     },
     "BR-03": {
-      "a": 52
+      "a": 52,
+      "rating": "Insufficient"
     },
     "BE-04": {
-      "a": 50
+      "a": 50,
+      "rating": "Insufficient"
     },
     "PL-04": {
-      "a": 46
+      "a": 46,
+      "rating": "Insufficient"
     },
     "SE-05": {
-      "a": 44
+      "a": 44,
+      "rating": "Insufficient"
     },
     "AE-01": {
-      "a": 36
+      "a": 36,
+      "rating": "Insufficient"
     },
     "BR-02": {
-      "a": 22
+      "a": 22,
+      "rating": "Insufficient"
     },
     "UA-01": {
       "a": 94
@@ -174,7 +181,8 @@
       "a": 83
     },
     "PL-01": {
-      "a": 9
+      "a": 9,
+      "rating": "Insufficient"
     },
     "DE-04": {
       "a": 95
@@ -192,13 +200,16 @@
       "b": 80
     },
     "SG-01": {
-      "b": 66
+      "b": 66,
+      "rating": "Insufficient"
     },
     "US-05": {
-      "b": 65
+      "b": 65,
+      "rating": "Insufficient"
     },
     "US-01": {
-      "a": 20
+      "a": 20,
+      "rating": "Insufficient"
     },
     "AT-04": {
       "c": 93
@@ -222,10 +233,15 @@
       "a": 93
     },
     "PT-01": {
-      "a": 41
+      "a": 41,
+      "rating": "Insufficient"
     },
     "SK-05": {
-      "a": 3
+      "a": 3,
+      "rating": "Insufficient"
+    },
+    "GR-03": {
+      "rating": "Withdrawn"
     }
   }
 }
