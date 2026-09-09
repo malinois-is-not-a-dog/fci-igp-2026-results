@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-10 01:03 (JST)",
+  "lastUpdated": "2026-09-10 01:20 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -242,6 +242,30 @@
     },
     "GR-03": {
       "rating": "Withdrawn"
+    },
+    "PL-02": {
+      "b": 90
+    },
+    "DE-03": {
+      "b": 90
+    },
+    "HU-02": {
+      "b": 90
+    },
+    "BE-02": {
+      "b": 90
+    },
+    "HU-03": {
+      "b": 87
+    },
+    "HR-01": {
+      "b": 85
+    },
+    "CA-02": {
+      "b": 82
+    },
+    "DK-03": {
+      "b": 78
     }
   }
 }
