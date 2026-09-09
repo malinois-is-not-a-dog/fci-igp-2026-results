@@ -1,11 +1,13 @@
 import json
 import re
+import time
 from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 RESULTS_URL = "https://fciigp2026.fci.systems/results.php"
 OUTPUT_FILE = Path("scores.json")
@@ -17,7 +19,8 @@ def score_value(text):
     if not text:
         return None
 
-    match = re.search(r"\b(100|[1-9]?\d)\b", text)
+    match = re.search(r"^(100|[0-9]{1,2})$", text)
+
     if match:
         return int(match.group(1))
 
@@ -43,19 +46,39 @@ def load_existing():
         }
 
 
+def get_rendered_html():
+    options = Options()
+
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--window-size=1920,1080")
+
+    driver = webdriver.Chrome(options=options)
+
+    try:
+        driver.get(RESULTS_URL)
+
+        # JavaScriptで結果表が描画されるのを待つ
+        for _ in range(30):
+            html = driver.page_source
+
+            if re.search(r"[A-Z]{2}-(?:\d{2}|WC)", html):
+                return html
+
+            time.sleep(1)
+
+        return driver.page_source
+
+    finally:
+        driver.quit()
+
+
 def main():
-    headers = {
-        "User-Agent": "Mozilla/5.0 FCI-IGP-2026-Results-Tracker"
-    }
+    html = get_rendered_html()
 
-    response = requests.get(
-        RESULTS_URL,
-        headers=headers,
-        timeout=30
-    )
-    response.raise_for_status()
-
-    soup = BeautifulSoup(response.text, "html.parser")
+    soup = BeautifulSoup(html, "html.parser")
 
     existing = load_existing()
     scores = existing.get("scores", {})
@@ -63,30 +86,50 @@ def main():
     valid_rows = 0
 
     for table in soup.find_all("table"):
-        headers_text = [
+
+        header_cells = table.find_all("th")
+
+        headers = [
             th.get_text(" ", strip=True)
-            for th in table.find_all("th")
+            for th in header_cells
         ]
 
-        header_string = " ".join(headers_text)
+        header_string = " ".join(headers)
 
         if (
             "Cat.No." not in header_string
             or "Handler" not in header_string
             or "Dog" not in header_string
+            or "A" not in headers
+            or "B" not in headers
+            or "C" not in headers
         ):
             continue
 
+        try:
+            cat_index = headers.index("Cat.No.")
+            a_index = headers.index("A")
+            b_index = headers.index("B")
+            c_index = headers.index("C")
+        except ValueError:
+            continue
+
         for row in table.find_all("tr"):
+
             cells = [
                 td.get_text(" ", strip=True)
                 for td in row.find_all("td")
             ]
 
-            if len(cells) < 9:
+            if len(cells) <= max(
+                cat_index,
+                a_index,
+                b_index,
+                c_index
+            ):
                 continue
 
-            cat_no = cells[2].strip()
+            cat_no = cells[cat_index].strip()
 
             if not re.fullmatch(
                 r"[A-Z]{2}-(?:\d{2}|WC)",
@@ -94,9 +137,9 @@ def main():
             ):
                 continue
 
-            a = score_value(cells[6])
-            b = score_value(cells[7])
-            c = score_value(cells[8])
+            a = score_value(cells[a_index])
+            b = score_value(cells[b_index])
+            c = score_value(cells[c_index])
 
             if a is None and b is None and c is None:
                 continue
@@ -117,9 +160,9 @@ def main():
 
         break
 
-    # 公式結果がまだ空の場合は既存データを消さない
     if valid_rows == 0:
-        print("No official scores found. Existing scores.json kept.")
+        print("No rendered official scores found.")
+        print("Existing scores.json kept.")
         return
 
     now = datetime.now(
