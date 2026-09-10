@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-10 16:39 (JST)",
+  "lastUpdated": "2026-09-10 16:49 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -207,18 +207,21 @@
       "b": 86
     },
     "SK-04": {
-      "b": 84
+      "b": 84,
+      "rating": "Disqualification"
     },
     "JP-03": {
       "b": 80
     },
     "SG-01": {
       "b": 66,
-      "rating": "Insufficient"
+      "rating": "Disqualification"
     },
     "US-05": {
       "b": 65,
-      "rating": "Insufficient"
+      "rating": "Insufficient",
+      "c": 66,
+      "status": "131"
     },
     "US-01": {
       "a": 20,
@@ -265,7 +268,9 @@
       "rating": "Withdrawn"
     },
     "PL-02": {
-      "b": 90
+      "b": 90,
+      "c": 87,
+      "status": "177"
     },
     "DE-03": {
       "b": 90
@@ -277,7 +282,9 @@
       "b": 90
     },
     "HU-03": {
-      "b": 87
+      "b": 87,
+      "c": 92,
+      "status": "179"
     },
     "HR-01": {
       "b": 85
@@ -286,7 +293,9 @@
       "b": 82
     },
     "DK-03": {
-      "b": 78
+      "b": 78,
+      "c": 80,
+      "status": "158"
     },
     "CZ-03": {
       "c": 92
