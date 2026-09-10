@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-10 22:42 (JST)",
+  "lastUpdated": "2026-09-10 22:52 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -426,6 +426,9 @@
     },
     "DE-WC": {
       "a": 80
+    },
+    "SK-02": {
+      "a": 92
     }
   }
 }
