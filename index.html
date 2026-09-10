@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9CP29L6CX8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-9CP29L6CX8');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -82,6 +74,90 @@
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     cursor:pointer;
   }
+  .actionbuttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0.5rem;
+  }
+  .schedulebtn{
+    width:100%;
+    padding:0.55rem 0.7rem;
+    border:1px solid var(--moss-dark);
+    border-radius:6px;
+    background:var(--card);
+    color:var(--moss-dark);
+    font-size:0.9rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    cursor:pointer;
+    font-weight:600;
+  }
+  .schedulebtn.active{
+    background:var(--moss-dark);
+    color:#fff;
+  }
+  #schedulePanel{
+    display:none;
+    margin:0 1.25rem 1rem;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1rem;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  #schedulePanel.show{display:block;}
+  .schedule-title{
+    font-size:0.95rem;
+    font-weight:700;
+    color:var(--moss-dark);
+    margin:0 0 0.7rem;
+  }
+  .phase-tabs, .day-tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.4rem;
+    margin-bottom:0.65rem;
+  }
+  .phase-tab, .day-tab{
+    border:1px solid var(--line);
+    background:#f7f6f1;
+    color:var(--ink);
+    border-radius:999px;
+    padding:0.42rem 0.7rem;
+    font-size:0.78rem;
+    font-family:inherit;
+    cursor:pointer;
+  }
+  .phase-tab.active, .day-tab.active{
+    background:var(--moss);
+    border-color:var(--moss);
+    color:#fff;
+    font-weight:600;
+  }
+  .schedule-subtitle{
+    font-size:0.76rem;
+    color:var(--muted);
+    margin:0.2rem 0 0.6rem;
+  }
+  .schedule-list{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .schedule-item{
+    display:grid;
+    grid-template-columns:3.4rem 2.8rem minmax(0,1fr);
+    gap:0.45rem;
+    align-items:start;
+    padding:0.58rem 0;
+    border-bottom:1px solid #eee;
+  }
+  .schedule-item:last-child{border-bottom:none;}
+  .schedule-time{font-weight:700; color:var(--moss-dark); font-size:0.86rem;}
+  .schedule-no{font-size:0.72rem; color:var(--muted); padding-top:0.08rem;}
+  .schedule-person{min-width:0;}
+  .schedule-handler{font-size:0.83rem; font-weight:600; line-height:1.25;}
+  .schedule-dog{font-size:0.74rem; color:var(--moss-dark); line-height:1.3; margin-top:0.08rem;}
+  .schedule-country{font-size:0.7rem; color:var(--muted); margin-top:0.12rem;}
   #rankPanel{
     display:none;
     margin:0 1.25rem 1rem;
@@ -247,13 +323,23 @@
     padding:2rem 1rem;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   }
+
+  .disclaimer{
+    max-width:760px;
+    margin:0.45rem auto 0;
+    font-size:0.72rem;
+    line-height:1.45;
+    color:var(--muted);
+    opacity:0.9;
+  }
 </style>
 </head>
 <body>
 
 <header>
   <h1>FCI IGP 2026 World Championship &mdash; Competitor & Results Tracker</h1>
-  <p>Search by country, breed, or handler/dog name. Scores are updated periodically as results come in.</p>
+  <p>Follow the competition at a glance &mdash; check schedules, scores, and rankings all in one place.</p>
+  <p class="disclaimer"><strong>Note:</strong> This tracker is a personal project created for fun and is not an official FCI IGP 2026 service. Please always check the official event information for the latest and accurate schedule.</p>
   <p class="lastupdated">Last updated: <span id="lastUpdated"></span></p>
 </header>
 
@@ -265,7 +351,18 @@
     <option value="lot">Sort: Lot No.</option>
     <option value="handler">Sort: Handler (A-Z)</option>
   </select>
-  <button id="rankBtn" class="rankbtn">Ranking</button>
+  <div class="actionbuttons">
+    <button id="rankBtn" class="rankbtn">Ranking</button>
+    <button id="scheduleBtn" class="schedulebtn">Schedule</button>
+  </div>
+</div>
+
+<div id="schedulePanel">
+  <div class="schedule-title">Time Schedule</div>
+  <div id="phaseTabs" class="phase-tabs"></div>
+  <div id="dayTabs" class="day-tabs"></div>
+  <div id="scheduleSubtitle" class="schedule-subtitle"></div>
+  <div id="scheduleList" class="schedule-list"></div>
 </div>
 
 <div id="rankFilterRow" class="rankfilterrow">
@@ -502,6 +599,104 @@ function showRankings(){
     `;
   }
 }
+
+const SCHEDULE_PHASES = {
+  a: {label:'A (Tracking)', idx:8},
+  b: {label:'B (Obedience)', idx:9},
+  c: {label:'C (Protection)', idx:10}
+};
+const DAY_ORDER = ['Wed','Thu','Fri','Sat','Sun','Mon','Tue'];
+let schedulePhase = 'a';
+let scheduleDay = null;
+
+function splitSchedule(value){
+  const m = String(value || '').trim().match(/^([A-Za-z]{3})\s+(\d{1,2}:\d{2})$/);
+  return m ? {day:m[1], time:m[2]} : null;
+}
+
+function availableDaysForPhase(phase){
+  const idx = SCHEDULE_PHASES[phase].idx;
+  const found = new Set();
+  DATA.forEach(d=>{
+    const p = splitSchedule(d[idx]);
+    if(p) found.add(p.day);
+  });
+  return DAY_ORDER.filter(day=>found.has(day));
+}
+
+function renderSchedule(){
+  const phaseTabs = document.getElementById('phaseTabs');
+  const dayTabs = document.getElementById('dayTabs');
+  const list = document.getElementById('scheduleList');
+  const subtitle = document.getElementById('scheduleSubtitle');
+
+  phaseTabs.innerHTML = Object.entries(SCHEDULE_PHASES).map(([key, info]) =>
+    `<button class="phase-tab ${schedulePhase===key?'active':''}" data-phase="${key}">${info.label}</button>`
+  ).join('');
+
+  const days = availableDaysForPhase(schedulePhase);
+  if(!scheduleDay || !days.includes(scheduleDay)) scheduleDay = days[0] || null;
+  dayTabs.innerHTML = days.map(day=>
+    `<button class="day-tab ${scheduleDay===day?'active':''}" data-day="${day}">${day}</button>`
+  ).join('');
+
+  const idx = SCHEDULE_PHASES[schedulePhase].idx;
+  const rows = DATA.map(d=>({d, p:splitSchedule(d[idx])}))
+    .filter(x=>x.p && x.p.day===scheduleDay)
+    .sort((x,y)=>x.p.time.localeCompare(y.p.time) || lotIndex[x.d[2]]-lotIndex[y.d[2]]);
+
+  subtitle.textContent = scheduleDay ? `${SCHEDULE_PHASES[schedulePhase].label} — ${scheduleDay} — ${rows.length} competitors` : 'No schedule available';
+  if(!rows.length){
+    list.innerHTML = '<div class="rankempty">No competitors scheduled</div>';
+  }else{
+    list.innerHTML = rows.map(({d,p})=>`
+      <div class="schedule-item">
+        <div class="schedule-time">${p.time}</div>
+        <div class="schedule-no">No. ${lotIndex[d[2]]}</div>
+        <div class="schedule-person">
+          <div class="schedule-handler">${d[3]}</div>
+          <div class="schedule-dog">${d[4]}</div>
+          <div class="schedule-country">${flagEmoji(d[1])} ${d[0]} / ${d[2]}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  phaseTabs.querySelectorAll('.phase-tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      schedulePhase = btn.dataset.phase;
+      scheduleDay = null;
+      renderSchedule();
+    });
+  });
+  dayTabs.querySelectorAll('.day-tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      scheduleDay = btn.dataset.day;
+      renderSchedule();
+    });
+  });
+}
+
+document.getElementById('scheduleBtn').addEventListener('click', ()=>{
+  const panel = document.getElementById('schedulePanel');
+  const btn = document.getElementById('scheduleBtn');
+  const willShow = !panel.classList.contains('show');
+  if(willShow){
+    const schedulePanel = document.getElementById('schedulePanel');
+    const scheduleBtn = document.getElementById('scheduleBtn');
+    schedulePanel.classList.remove('show');
+    scheduleBtn.classList.remove('active');
+    scheduleBtn.textContent = 'Schedule';
+    panel.classList.add('show');
+    btn.classList.add('active');
+    btn.textContent = 'Hide Schedule';
+    renderSchedule();
+  }else{
+    panel.classList.remove('show');
+    btn.classList.remove('active');
+    btn.textContent = 'Schedule';
+  }
+});
 
 document.getElementById('rankBtn').addEventListener('click', ()=>{
   const panel = document.getElementById('rankPanel');
