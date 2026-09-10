@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-10 16:13 (JST)",
+  "lastUpdated": "2026-09-10 16:28 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -238,7 +238,9 @@
       "status": "171"
     },
     "CN-05": {
-      "c": 78
+      "c": 78,
+      "a": 8,
+      "rating": "Insufficient"
     },
     "FR-02": {
       "c": 73
