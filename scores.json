@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-11 15:30 (JST)",
+  "lastUpdated": "2026-09-11 15:45 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -491,6 +491,12 @@
     },
     "LV-04": {
       "a": 81
+    },
+    "CH-01": {
+      "a": 90
+    },
+    "BG-04": {
+      "rating": "Termination"
     }
   }
 }
