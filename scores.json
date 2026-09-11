@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-11 16:21 (JST)",
+  "lastUpdated": "2026-09-11 16:33 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -325,13 +325,16 @@
     "CA-05": {
       "c": 90,
       "a": 9,
-      "rating": "Insufficient"
+      "rating": "Insufficient",
+      "b": 87,
+      "status": "186"
     },
     "NL-04": {
       "c": 87,
       "a": 20,
-      "status": "107",
-      "rating": "Insufficient"
+      "status": "165",
+      "rating": "Insufficient",
+      "b": 58
     },
     "CA-03": {
       "c": 84,
@@ -346,7 +349,9 @@
     "FR-02": {
       "c": 73,
       "a": 92,
-      "status": "165"
+      "status": "250",
+      "b": 85,
+      "rating": "Good"
     },
     "ES-02": {
       "a": 93,
@@ -410,12 +415,16 @@
     "CZ-03": {
       "c": 92,
       "a": 92,
-      "status": "184"
+      "status": "274",
+      "b": 90,
+      "rating": "Very good"
     },
     "IT-02": {
       "c": 92,
       "a": 91,
-      "status": "183"
+      "status": "274",
+      "b": 91,
+      "rating": "Very good"
     },
     "US-02": {
       "a": 90,
@@ -425,17 +434,23 @@
     "DE-05": {
       "c": 85,
       "a": 86,
-      "status": "171"
+      "status": "249",
+      "b": 78,
+      "rating": "Good"
     },
     "CA-01": {
       "c": 82,
       "a": 90,
-      "status": "172"
+      "status": "262",
+      "b": 90,
+      "rating": "Good"
     },
     "BE-03": {
       "c": 80,
       "a": 77,
-      "status": "157"
+      "status": "241",
+      "b": 84,
+      "rating": "Good"
     },
     "HR-02": {
       "a": 80
@@ -503,6 +518,9 @@
     },
     "AT-03": {
       "a": 88
+    },
+    "IL-01": {
+      "a": 83
     }
   }
 }
