@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-11 19:54 (JST)",
+  "lastUpdated": "2026-09-11 20:01 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -419,7 +419,9 @@
     "HU-03": {
       "b": 87,
       "c": 92,
-      "status": "179"
+      "status": "180",
+      "a": 1,
+      "rating": "Insufficient"
     },
     "HR-01": {
       "b": 85,
