@@ -1,12 +1,13 @@
 {
-  "lastUpdated": "2026-09-11 23:19 (JST)",
+  "lastUpdated": "2026-09-11 23:32 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
       "c": 95,
       "a": 26,
-      "status": "121",
-      "rating": "Insufficient"
+      "status": "211",
+      "rating": "Insufficient",
+      "b": 90
     },
     "SI-04": {
       "b": 95,
@@ -80,7 +81,9 @@
     "DE-02": {
       "c": 90,
       "a": 94,
-      "status": "184"
+      "status": "271",
+      "b": 87,
+      "rating": "Very good"
     },
     "RS-01": {
       "a": 90,
@@ -88,7 +91,9 @@
       "status": "173"
     },
     "CN-03": {
-      "c": 89
+      "c": 89,
+      "b": 86,
+      "status": "175"
     },
     "ES-WC": {
       "b": 89,
@@ -155,7 +160,9 @@
     "CN-02": {
       "c": 83,
       "a": 0,
-      "rating": "Insufficient"
+      "rating": "Insufficient",
+      "b": 90,
+      "status": "173"
     },
     "FI-02": {
       "a": 83,
@@ -212,15 +219,21 @@
     "GR-02": {
       "c": 79,
       "a": 88,
-      "status": "167"
+      "status": "238",
+      "b": 71,
+      "rating": "Satisfactory"
     },
     "AT-05": {
       "c": 78,
       "a": 90,
-      "status": "168"
+      "status": "259",
+      "b": 91,
+      "rating": "Good"
     },
     "SI-01": {
-      "c": 77
+      "c": 77,
+      "b": 89,
+      "status": "166"
     },
     "LV-02": {
       "c": 77,
