@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-13 00:34 (JST)",
+  "lastUpdated": "2026-09-13 00:42 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -100,7 +100,9 @@
     "RS-01": {
       "a": 90,
       "b": 83,
-      "status": "173"
+      "status": "173",
+      "c": 0,
+      "rating": "Insufficient"
     },
     "CN-03": {
       "c": 89,
@@ -311,13 +313,16 @@
     "FI-04": {
       "a": 73,
       "b": 73,
-      "status": "146"
+      "status": "224",
+      "c": 78,
+      "rating": "Satisfactory"
     },
     "FR-03": {
       "a": 53,
       "rating": "Insufficient",
       "b": 67,
-      "status": "120"
+      "status": "199",
+      "c": 79
     },
     "BR-03": {
       "a": 52,
