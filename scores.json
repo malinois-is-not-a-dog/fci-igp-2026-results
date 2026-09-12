@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-12 17:29 (JST)",
+  "lastUpdated": "2026-09-12 17:40 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -663,7 +663,8 @@
     },
     "UA-03": {
       "c": 0,
-      "rating": "Insufficient"
+      "rating": "Insufficient",
+      "a": 78
     },
     "HR-03": {
       "rating": "Disqualification"
