@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-12 17:40 (JST)",
+  "lastUpdated": "2026-09-12 17:48 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -677,7 +677,9 @@
       "rating": "Disqualification"
     },
     "DE-01": {
-      "c": 95
+      "c": 95,
+      "a": 88,
+      "status": "183"
     },
     "AT-01": {
       "c": 91
