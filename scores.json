@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-13 17:06 (JST)",
+  "lastUpdated": "2026-09-13 17:20 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -164,7 +164,7 @@
     },
     "IT-04": {
       "b": 85,
-      "rating": "Termination"
+      "rating": "Withdrawn"
     },
     "EE-01": {
       "b": 85,
@@ -735,7 +735,7 @@
       "status": "179"
     },
     "BG-04": {
-      "rating": "Termination"
+      "rating": "Withdrawn"
     },
     "CZ-05": {
       "a": 93,
@@ -816,7 +816,7 @@
     },
     "DK-02": {
       "c": 0,
-      "rating": "Termination"
+      "rating": "Withdrawn"
     },
     "PT-02": {
       "c": 0,
