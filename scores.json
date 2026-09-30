@@ -1,901 +1,914 @@
 {
-  "lastUpdated": "2026-10-01 03:00 (JST)",
+  "lastUpdated": "2026-10-01 03:14 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
-      "c": 95,
-      "a": 26,
-      "status": "211",
-      "rating": "Insufficient",
-      "b": 90
+      "c": "211",
+      "a": 90,
+      "status": "Insufficient",
+      "rating": "-",
+      "b": 95
     },
     "SI-04": {
-      "b": 95,
-      "c": 93,
-      "status": "270",
-      "a": 82,
-      "rating": "Very good"
+      "b": 93,
+      "c": "270",
+      "status": "Very good",
+      "a": 95,
+      "rating": "23"
     },
     "BE-01": {
-      "a": 94,
-      "b": 90,
-      "status": "283",
-      "c": 99,
-      "rating": "Very good"
+      "a": 90,
+      "b": 99,
+      "status": "Very good",
+      "c": "283",
+      "rating": "3"
     },
     "CA-04": {
-      "b": 93,
-      "c": 92,
-      "status": "279",
-      "a": 94,
-      "rating": "Very good"
+      "b": 92,
+      "c": "279",
+      "status": "Very good",
+      "a": 93,
+      "rating": "7"
     },
     "CH-02": {
-      "b": 93,
-      "c": 87,
-      "status": "264",
-      "a": 84,
-      "rating": "Good"
+      "b": 87,
+      "c": "264",
+      "status": "Good",
+      "a": 93,
+      "rating": "36"
     },
     "IT-01": {
-      "b": 93,
-      "c": 89,
-      "status": "272",
-      "a": 90,
-      "rating": "Very good"
+      "b": 89,
+      "c": "272",
+      "status": "Very good",
+      "a": 93,
+      "rating": "18"
     },
     "IT-03": {
       "b": 93,
-      "c": 93,
-      "status": "273",
-      "a": 87,
-      "rating": "Very good"
+      "c": "273",
+      "status": "Very good",
+      "a": 93,
+      "rating": "15"
     },
     "UA-02": {
-      "a": 93,
-      "b": 70,
-      "status": "235",
-      "c": 72,
-      "rating": "Satisfactory"
+      "a": 70,
+      "b": 72,
+      "status": "Satisfactory",
+      "c": "235",
+      "rating": "79"
     },
     "US-WC": {
       "c": 92,
       "a": 66,
-      "status": "158",
-      "rating": "Withdrawn"
+      "status": "Withdrawn",
+      "rating": "-",
+      "b": 92
     },
     "BG-01": {
-      "b": 92,
-      "c": 97,
-      "status": "250",
-      "a": 61,
-      "rating": "Insufficient"
+      "b": 97,
+      "c": "250",
+      "status": "Insufficient",
+      "a": 92,
+      "rating": "-"
     },
     "ES-01": {
-      "b": 92,
-      "c": 97,
-      "status": "284",
-      "a": 95,
-      "rating": "Very good"
+      "b": 97,
+      "c": "284",
+      "status": "Very good",
+      "a": 92,
+      "rating": "2"
     },
     "CZ-02": {
-      "b": 91,
-      "c": 96,
-      "status": "281",
-      "a": 94,
-      "rating": "Very good"
+      "b": 96,
+      "c": "281",
+      "status": "Very good",
+      "a": 91,
+      "rating": "5"
     },
     "PL-03": {
       "a": 91,
-      "b": 91,
-      "status": "277",
-      "c": 95,
-      "rating": "Very good"
+      "b": 95,
+      "status": "Very good",
+      "c": "277",
+      "rating": "9"
     },
     "DE-02": {
-      "c": 90,
-      "a": 94,
-      "status": "271",
-      "b": 87,
-      "rating": "Very good"
+      "c": "271",
+      "a": 87,
+      "status": "Very good",
+      "b": 90,
+      "rating": "19"
     },
     "RS-01": {
-      "a": 90,
-      "b": 83,
-      "status": "173",
-      "c": 0,
-      "rating": "Insufficient"
+      "a": 83,
+      "b": 0,
+      "status": "Insufficient",
+      "c": "173",
+      "rating": "-"
     },
     "CN-03": {
-      "c": 89,
-      "b": 86,
-      "status": "192",
-      "a": 17,
-      "rating": "Insufficient"
+      "c": "192",
+      "b": 89,
+      "status": "Insufficient",
+      "a": 86,
+      "rating": "-"
     },
     "ES-WC": {
-      "b": 89,
-      "c": 94,
-      "status": "280",
-      "a": 97,
-      "rating": "Very good"
+      "b": 94,
+      "c": "280",
+      "status": "Very good",
+      "a": 89,
+      "rating": "6"
     },
     "BG-02": {
-      "b": 88,
-      "c": 94,
-      "status": "278",
-      "a": 96,
-      "rating": "Very good"
+      "b": 94,
+      "c": "278",
+      "status": "Very good",
+      "a": 88,
+      "rating": "8"
     },
     "SK-01": {
-      "b": 88,
-      "c": 92,
-      "status": "268",
+      "b": 92,
+      "c": "268",
+      "status": "Good",
       "a": 88,
-      "rating": "Good"
+      "rating": "29"
     },
     "US-03": {
-      "c": 87,
-      "b": 93,
-      "status": "268",
-      "a": 88,
-      "rating": "Good"
+      "c": "268",
+      "b": 87,
+      "status": "Good",
+      "a": 93,
+      "rating": "30"
     },
     "AR-01": {
-      "b": 86,
-      "c": 83,
-      "status": "249",
-      "a": 80,
-      "rating": "Good"
+      "b": 83,
+      "c": "249",
+      "status": "Good",
+      "a": 86,
+      "rating": "60"
     },
     "LV-01": {
-      "b": 86,
-      "c": 87,
-      "status": "254",
-      "a": 81,
-      "rating": "Good"
+      "b": 87,
+      "c": "254",
+      "status": "Good",
+      "a": 86,
+      "rating": "48"
     },
     "BR-01": {
-      "a": 86,
-      "b": 92,
-      "status": "266",
-      "c": 88,
-      "rating": "Good"
+      "a": 92,
+      "b": 88,
+      "status": "Good",
+      "c": "266",
+      "rating": "34"
     },
     "IT-04": {
       "b": 85,
-      "rating": "Withdrawn"
+      "rating": "-",
+      "a": 85,
+      "status": "Withdrawn"
     },
     "EE-01": {
       "b": 85,
-      "rating": "Disqualification"
+      "rating": "-",
+      "status": "Disqualification"
     },
     "PL-05": {
-      "c": 84,
-      "b": 70,
-      "status": "242",
-      "a": 88,
-      "rating": "Good"
+      "c": "242",
+      "b": 84,
+      "status": "Good",
+      "a": 70,
+      "rating": "70"
     },
     "BR-04": {
-      "b": 84,
-      "c": 0,
-      "rating": "Insufficient",
-      "a": 85,
-      "status": "169"
+      "b": 0,
+      "c": "169",
+      "rating": "-",
+      "a": 84,
+      "status": "Insufficient"
     },
     "IT-05": {
-      "c": 83,
-      "b": 91,
-      "status": "271",
-      "a": 97,
-      "rating": "Very good"
+      "c": "271",
+      "b": 83,
+      "status": "Very good",
+      "a": 91,
+      "rating": "21"
     },
     "CN-02": {
-      "c": 83,
-      "a": 0,
-      "rating": "Insufficient",
-      "b": 90,
-      "status": "173"
+      "c": "173",
+      "a": 90,
+      "rating": "-",
+      "b": 83,
+      "status": "Insufficient"
     },
     "FI-02": {
-      "a": 83,
-      "b": 82,
-      "status": "243",
-      "c": 78,
-      "rating": "Good"
+      "a": 82,
+      "b": 78,
+      "status": "Good",
+      "c": "243",
+      "rating": "68"
     },
     "HU-05": {
-      "c": 82,
-      "b": 86,
-      "status": "251",
-      "a": 83,
-      "rating": "Good"
+      "c": "251",
+      "b": 82,
+      "status": "Good",
+      "a": 86,
+      "rating": "55"
     },
     "GR-01": {
-      "a": 82,
-      "b": 93,
-      "status": "266",
-      "c": 91,
-      "rating": "Good"
+      "a": 93,
+      "b": 91,
+      "status": "Good",
+      "c": "266",
+      "rating": "33"
     },
     "AT-02": {
-      "a": 82,
-      "b": 85,
-      "status": "261",
-      "c": 94,
-      "rating": "Good"
+      "a": 85,
+      "b": 94,
+      "status": "Good",
+      "c": "261",
+      "rating": "39"
     },
     "SE-03": {
-      "c": 81,
-      "b": 74,
-      "status": "236",
-      "a": 81,
-      "rating": "Satisfactory"
+      "c": "236",
+      "b": 81,
+      "status": "Satisfactory",
+      "a": 74,
+      "rating": "77"
     },
     "CN-01": {
-      "c": 81,
-      "b": 83,
-      "status": "222",
-      "a": 58,
-      "rating": "Insufficient"
+      "c": "222",
+      "b": 81,
+      "status": "Insufficient",
+      "a": 83,
+      "rating": "-"
     },
     "SE-04": {
-      "a": 81,
-      "b": 85,
-      "status": "244",
-      "c": 78,
-      "rating": "Good"
+      "a": 85,
+      "b": 78,
+      "status": "Good",
+      "c": "244",
+      "rating": "65"
     },
     "GB-01": {
-      "a": 81,
-      "b": 90,
-      "status": "259",
-      "c": 88,
-      "rating": "Good"
+      "a": 90,
+      "b": 88,
+      "status": "Good",
+      "c": "259",
+      "rating": "41"
     },
     "DK-01": {
-      "b": 80,
-      "c": 75,
-      "status": "251",
-      "a": 96,
-      "rating": "Good"
+      "b": 75,
+      "c": "251",
+      "status": "Good",
+      "a": 80,
+      "rating": "56"
     },
     "SE-02": {
-      "a": 80,
-      "b": 92,
-      "status": "257",
-      "c": 85,
-      "rating": "Good"
+      "a": 92,
+      "b": 85,
+      "status": "Good",
+      "c": "257",
+      "rating": "46"
     },
     "GR-02": {
-      "c": 79,
-      "a": 88,
-      "status": "238",
-      "b": 71,
-      "rating": "Satisfactory"
+      "c": "238",
+      "a": 71,
+      "status": "Satisfactory",
+      "b": 79,
+      "rating": "74"
     },
     "AT-05": {
-      "c": 78,
-      "a": 90,
-      "status": "259",
-      "b": 91,
-      "rating": "Good"
+      "c": "259",
+      "a": 91,
+      "status": "Good",
+      "b": 78,
+      "rating": "43"
     },
     "SI-01": {
-      "c": 77,
-      "b": 89,
-      "status": "213",
-      "a": 47,
-      "rating": "Insufficient"
+      "c": "213",
+      "b": 77,
+      "status": "Insufficient",
+      "a": 89,
+      "rating": "-"
     },
     "LV-02": {
-      "c": 77,
-      "a": 31,
-      "status": "191",
-      "rating": "Insufficient",
-      "b": 83
+      "c": "191",
+      "a": 83,
+      "status": "Insufficient",
+      "rating": "-",
+      "b": 77
     },
     "JP-01": {
-      "c": 75,
-      "a": 73,
-      "status": "148",
-      "b": 0,
-      "rating": "Insufficient"
+      "c": "148",
+      "a": 0,
+      "status": "Insufficient",
+      "b": 75,
+      "rating": "-"
     },
     "EE-02": {
       "b": 75,
-      "rating": "Disqualification"
+      "rating": "-",
+      "status": "Disqualification"
     },
     "SI-02": {
-      "c": 74,
-      "b": 81,
-      "status": "221",
-      "a": 66,
-      "rating": "Insufficient"
+      "c": "221",
+      "b": 74,
+      "status": "Insufficient",
+      "a": 81,
+      "rating": "-"
     },
     "FI-04": {
       "a": 73,
-      "b": 73,
-      "status": "224",
-      "c": 78,
-      "rating": "Satisfactory"
+      "b": 78,
+      "status": "Satisfactory",
+      "c": "224",
+      "rating": "81"
     },
     "FR-03": {
-      "a": 53,
-      "rating": "Insufficient",
-      "b": 67,
-      "status": "199",
-      "c": 79
+      "a": 67,
+      "rating": "-",
+      "b": 79,
+      "status": "Insufficient",
+      "c": "199"
     },
     "BR-03": {
-      "a": 52,
-      "rating": "Insufficient",
-      "b": 85,
-      "status": "230",
-      "c": 93
+      "a": 85,
+      "rating": "-",
+      "b": 93,
+      "status": "Insufficient",
+      "c": "230"
     },
     "BE-04": {
       "a": 50,
-      "rating": "Disqualification",
+      "rating": "-",
       "b": 86,
-      "status": "136"
+      "status": "Disqualification"
     },
     "PL-04": {
-      "a": 46,
-      "rating": "Insufficient",
-      "b": 81,
-      "status": "225",
-      "c": 98
+      "a": 81,
+      "rating": "-",
+      "b": 98,
+      "status": "Insufficient",
+      "c": "225"
     },
     "SE-05": {
-      "a": 44,
-      "rating": "Insufficient",
-      "b": 89,
-      "status": "227",
-      "c": 94
+      "a": 89,
+      "rating": "-",
+      "b": 94,
+      "status": "Insufficient",
+      "c": "227"
     },
     "AE-01": {
-      "a": 36,
-      "rating": "Insufficient",
-      "b": 87,
-      "status": "218",
-      "c": 95
+      "a": 87,
+      "rating": "-",
+      "b": 95,
+      "status": "Insufficient",
+      "c": "218"
     },
     "BR-02": {
-      "a": 22,
-      "rating": "Insufficient",
-      "b": 89,
-      "status": "204",
-      "c": 93
+      "a": 89,
+      "rating": "-",
+      "b": 93,
+      "status": "Insufficient",
+      "c": "204"
     },
     "UA-01": {
-      "a": 94,
-      "b": 87,
-      "status": "271",
-      "c": 90,
-      "rating": "Very good"
+      "a": 87,
+      "b": 90,
+      "status": "Very good",
+      "c": "271",
+      "rating": "19"
     },
     "ES-04": {
-      "a": 88,
-      "b": 77,
-      "status": "259",
-      "c": 94,
-      "rating": "Good"
+      "a": 77,
+      "b": 94,
+      "status": "Good",
+      "c": "259",
+      "rating": "40"
     },
     "US-04": {
-      "a": 83,
-      "b": 86,
-      "status": "257",
-      "c": 88,
-      "rating": "Good"
+      "a": 86,
+      "b": 88,
+      "status": "Good",
+      "c": "257",
+      "rating": "45"
     },
     "PL-01": {
-      "a": 9,
-      "rating": "Insufficient",
-      "b": 91,
-      "c": 94,
-      "status": "194"
+      "a": 91,
+      "rating": "-",
+      "b": 94,
+      "c": "194",
+      "status": "Insufficient"
     },
     "DE-04": {
-      "a": 95,
-      "b": 76,
-      "status": "254",
-      "c": 83,
-      "rating": "Good"
+      "a": 76,
+      "b": 83,
+      "status": "Good",
+      "c": "254",
+      "rating": "49"
     },
     "NL-01": {
       "b": 86,
-      "a": 17,
-      "status": "189",
-      "rating": "Insufficient",
-      "c": 86
+      "a": 86,
+      "status": "Insufficient",
+      "rating": "-",
+      "c": "189"
     },
     "DK-WC": {
-      "b": 86,
-      "a": 4,
-      "rating": "Insufficient",
-      "c": 85,
-      "status": "175"
+      "b": 85,
+      "a": 86,
+      "rating": "-",
+      "c": "175",
+      "status": "Insufficient"
     },
     "SK-04": {
       "b": 84,
-      "rating": "Disqualification"
+      "rating": "-",
+      "status": "Disqualification"
     },
     "JP-03": {
-      "b": 80,
-      "a": 15,
-      "rating": "Insufficient",
-      "c": 73,
-      "status": "168"
+      "b": 73,
+      "a": 80,
+      "rating": "-",
+      "c": "168",
+      "status": "Insufficient"
     },
     "SG-01": {
       "b": 66,
-      "rating": "Disqualification"
+      "rating": "-",
+      "status": "Disqualification"
     },
     "US-05": {
-      "b": 65,
-      "rating": "Insufficient",
-      "c": 66,
-      "status": "149",
-      "a": 18
+      "b": 66,
+      "rating": "-",
+      "c": "149",
+      "status": "Insufficient",
+      "a": 65
     },
     "US-01": {
-      "a": 20,
-      "rating": "Insufficient",
-      "b": 94,
-      "status": "205",
-      "c": 91
+      "a": 94,
+      "rating": "-",
+      "b": 91,
+      "status": "Insufficient",
+      "c": "205"
     },
     "AT-04": {
-      "c": 93,
-      "a": 78,
-      "status": "250",
-      "b": 79,
-      "rating": "Good"
+      "c": "250",
+      "a": 79,
+      "status": "Good",
+      "b": 93,
+      "rating": "57"
     },
     "CA-05": {
-      "c": 90,
-      "a": 9,
-      "rating": "Insufficient",
-      "b": 87,
-      "status": "186"
+      "c": "186",
+      "a": 87,
+      "rating": "-",
+      "b": 90,
+      "status": "Insufficient"
     },
     "NL-04": {
-      "c": 87,
-      "a": 20,
-      "status": "165",
-      "rating": "Insufficient",
-      "b": 58
+      "c": "165",
+      "a": 58,
+      "status": "Insufficient",
+      "rating": "-",
+      "b": 87
     },
     "CA-03": {
-      "c": 84,
-      "a": 87,
-      "status": "263",
-      "b": 92,
-      "rating": "Good"
+      "c": "263",
+      "a": 92,
+      "status": "Good",
+      "b": 84,
+      "rating": "37"
     },
     "CN-05": {
-      "c": 78,
-      "a": 8,
-      "rating": "Insufficient",
-      "b": 86,
-      "status": "172"
+      "c": "172",
+      "a": 86,
+      "rating": "-",
+      "b": 78,
+      "status": "Insufficient"
     },
     "FR-02": {
-      "c": 73,
-      "a": 92,
-      "status": "250",
-      "b": 85,
-      "rating": "Good"
+      "c": "250",
+      "a": 85,
+      "status": "Good",
+      "b": 73,
+      "rating": "58"
     },
     "ES-02": {
-      "a": 93,
+      "a": 88,
       "b": 88,
-      "status": "269",
-      "c": 88,
-      "rating": "Good"
+      "status": "Good",
+      "c": "269",
+      "rating": "26"
     },
     "PT-01": {
       "a": 41,
-      "rating": "Disqualification",
+      "rating": "-",
       "b": 78,
-      "status": "119"
+      "status": "Disqualification"
     },
     "SK-05": {
-      "a": 3,
-      "rating": "Insufficient",
-      "b": 91,
-      "c": 79,
-      "status": "173"
+      "a": 91,
+      "rating": "-",
+      "b": 79,
+      "c": "173",
+      "status": "Insufficient"
     },
     "GR-03": {
-      "rating": "Withdrawn"
+      "rating": "-",
+      "status": "Withdrawn"
     },
     "PL-02": {
-      "b": 90,
-      "c": 87,
-      "status": "273",
-      "a": 96,
-      "rating": "Very good"
+      "b": 87,
+      "c": "273",
+      "status": "Very good",
+      "a": 90,
+      "rating": "17"
     },
     "DE-03": {
-      "b": 90,
-      "c": 88,
-      "status": "236",
-      "a": 58,
-      "rating": "Insufficient"
+      "b": 88,
+      "c": "236",
+      "status": "Insufficient",
+      "a": 90,
+      "rating": "-"
     },
     "HU-02": {
-      "b": 90,
-      "c": 92,
-      "status": "275",
-      "a": 93,
-      "rating": "Very good"
+      "b": 92,
+      "c": "275",
+      "status": "Very good",
+      "a": 90,
+      "rating": "11"
     },
     "BE-02": {
-      "b": 90,
-      "c": 96,
-      "status": "283",
-      "a": 97,
-      "rating": "Very good"
+      "b": 96,
+      "c": "283",
+      "status": "Very good",
+      "a": 90,
+      "rating": "4"
     },
     "HU-03": {
-      "b": 87,
-      "c": 92,
-      "status": "180",
-      "a": 1,
-      "rating": "Insufficient"
+      "b": 92,
+      "c": "180",
+      "status": "Insufficient",
+      "a": 87,
+      "rating": "-"
     },
     "HR-01": {
-      "b": 85,
-      "c": 89,
-      "status": "248",
-      "a": 74,
-      "rating": "Good"
+      "b": 89,
+      "c": "248",
+      "status": "Good",
+      "a": 85,
+      "rating": "61"
     },
     "CA-02": {
-      "b": 82,
-      "c": 96,
-      "status": "244",
-      "a": 66,
-      "rating": "Insufficient"
+      "b": 96,
+      "c": "244",
+      "status": "Insufficient",
+      "a": 82,
+      "rating": "-"
     },
     "DK-03": {
-      "b": 78,
-      "c": 80,
-      "status": "197",
-      "a": 39,
-      "rating": "Insufficient"
+      "b": 80,
+      "c": "197",
+      "status": "Insufficient",
+      "a": 78,
+      "rating": "-"
     },
     "CZ-03": {
-      "c": 92,
-      "a": 92,
-      "status": "274",
-      "b": 90,
-      "rating": "Very good"
+      "c": "274",
+      "a": 90,
+      "status": "Very good",
+      "b": 92,
+      "rating": "13"
     },
     "IT-02": {
-      "c": 92,
+      "c": "274",
       "a": 91,
-      "status": "274",
-      "b": 91,
-      "rating": "Very good"
+      "status": "Very good",
+      "b": 92,
+      "rating": "12"
     },
     "US-02": {
-      "a": 90,
-      "b": 94,
-      "status": "184",
-      "c": 0,
-      "rating": "Insufficient"
+      "a": 94,
+      "b": 0,
+      "status": "Insufficient",
+      "c": "184",
+      "rating": "-"
     },
     "DE-05": {
-      "c": 85,
-      "a": 86,
-      "status": "249",
-      "b": 78,
-      "rating": "Good"
+      "c": "249",
+      "a": 78,
+      "status": "Good",
+      "b": 85,
+      "rating": "59"
     },
     "CA-01": {
-      "c": 82,
+      "c": "262",
       "a": 90,
-      "status": "262",
-      "b": 90,
-      "rating": "Good"
+      "status": "Good",
+      "b": 82,
+      "rating": "38"
     },
     "BE-03": {
-      "c": 80,
-      "a": 77,
-      "status": "241",
-      "b": 84,
-      "rating": "Good"
+      "c": "241",
+      "a": 84,
+      "status": "Good",
+      "b": 80,
+      "rating": "72"
     },
     "HR-02": {
-      "a": 80,
-      "b": 85,
-      "status": "245",
-      "c": 80,
-      "rating": "Good"
+      "a": 85,
+      "b": 80,
+      "status": "Good",
+      "c": "245",
+      "rating": "63"
     },
     "BE-05": {
-      "a": 34,
-      "rating": "Insufficient",
-      "b": 88,
-      "status": "205",
-      "c": 83
+      "a": 88,
+      "rating": "-",
+      "b": 83,
+      "status": "Insufficient",
+      "c": "205"
     },
     "CZ-01": {
-      "a": 84,
+      "a": 96,
       "b": 96,
-      "status": "276",
-      "c": 96,
-      "rating": "Very good"
+      "status": "Very good",
+      "c": "276",
+      "rating": "10"
     },
     "ES-05": {
-      "a": 96,
-      "b": 83,
-      "status": "259",
-      "c": 80,
-      "rating": "Good"
+      "a": 83,
+      "b": 80,
+      "status": "Good",
+      "c": "259",
+      "rating": "42"
     },
     "SE-01": {
-      "a": 95,
-      "c": 94,
-      "status": "266",
-      "b": 77,
-      "rating": "Good"
+      "a": 77,
+      "c": "266",
+      "status": "Good",
+      "b": 94,
+      "rating": "32"
     },
     "CH-05": {
-      "a": 90,
-      "c": 79,
-      "status": "254",
-      "b": 85,
-      "rating": "Good"
+      "a": 85,
+      "c": "254",
+      "status": "Good",
+      "b": 79,
+      "rating": "50"
     },
     "DE-WC": {
-      "a": 80,
-      "c": 83,
-      "status": "244",
-      "b": 81,
-      "rating": "Good"
+      "a": 81,
+      "c": "244",
+      "status": "Good",
+      "b": 83,
+      "rating": "64"
     },
     "SK-02": {
-      "a": 92,
-      "c": 91,
-      "status": "269",
-      "b": 86,
-      "rating": "Good"
+      "a": 86,
+      "c": "269",
+      "status": "Good",
+      "b": 91,
+      "rating": "25"
     },
     "FR-01": {
-      "a": 94,
-      "c": 89,
-      "status": "273",
-      "b": 90,
-      "rating": "Very good"
+      "a": 90,
+      "c": "273",
+      "status": "Very good",
+      "b": 89,
+      "rating": "16"
     },
     "CH-03": {
-      "a": 74,
-      "c": 90,
-      "status": "251",
-      "b": 87,
-      "rating": "Good"
+      "a": 87,
+      "c": "251",
+      "status": "Good",
+      "b": 90,
+      "rating": "53"
     },
     "HU-04": {
-      "a": 80,
-      "c": 96,
-      "status": "270",
-      "b": 94,
-      "rating": "Very good"
+      "a": 94,
+      "c": "270",
+      "status": "Very good",
+      "b": 96,
+      "rating": "22"
     },
     "SK-03": {
-      "a": 98,
-      "c": 88,
-      "status": "269",
-      "b": 83,
-      "rating": "Good"
+      "a": 83,
+      "c": "269",
+      "status": "Good",
+      "b": 88,
+      "rating": "27"
     },
     "CZ-04": {
-      "a": 97,
-      "c": 98,
-      "status": "288",
-      "b": 93,
-      "rating": "Excellent"
+      "a": 93,
+      "c": "288",
+      "status": "Excellent",
+      "b": 98,
+      "rating": "1"
     },
     "HU-01": {
-      "a": 83,
-      "c": 86,
-      "status": "258",
-      "b": 89,
-      "rating": "Good"
+      "a": 89,
+      "c": "258",
+      "status": "Good",
+      "b": 86,
+      "rating": "44"
     },
     "FI-03": {
-      "a": 83,
-      "c": 80,
-      "status": "240",
-      "b": 77,
-      "rating": "Good"
+      "a": 77,
+      "c": "240",
+      "status": "Good",
+      "b": 80,
+      "rating": "73"
     },
     "GB-03": {
-      "a": 83,
-      "c": 74,
-      "status": "243",
-      "b": 86,
-      "rating": "Good"
+      "a": 86,
+      "c": "243",
+      "status": "Good",
+      "b": 74,
+      "rating": "69"
     },
     "FR-04": {
-      "a": 86,
-      "c": 82,
-      "status": "256",
-      "b": 88,
-      "rating": "Good"
+      "a": 88,
+      "c": "256",
+      "status": "Good",
+      "b": 82,
+      "rating": "47"
     },
     "LV-04": {
-      "a": 81,
-      "c": 75,
-      "status": "230",
-      "b": 74,
-      "rating": "Satisfactory"
+      "a": 74,
+      "c": "230",
+      "status": "Satisfactory",
+      "b": 75,
+      "rating": "80"
     },
     "CH-01": {
-      "a": 90,
-      "b": 89,
-      "status": "267",
-      "c": 88,
-      "rating": "Good"
+      "a": 89,
+      "b": 88,
+      "status": "Good",
+      "c": "267",
+      "rating": "31"
     },
     "BG-04": {
-      "rating": "Withdrawn"
+      "rating": "-",
+      "status": "Withdrawn"
     },
     "CZ-05": {
-      "a": 93,
-      "b": 91,
-      "status": "274",
-      "c": 90,
-      "rating": "Very good"
+      "a": 91,
+      "b": 90,
+      "status": "Very good",
+      "c": "274",
+      "rating": "14"
     },
     "AT-03": {
       "a": 88,
-      "b": 88,
-      "status": "269",
-      "c": 93,
-      "rating": "Good"
+      "b": 93,
+      "status": "Good",
+      "c": "269",
+      "rating": "24"
     },
     "IL-01": {
-      "a": 83,
-      "b": 86,
-      "status": "244",
-      "c": 75,
-      "rating": "Good"
+      "a": 86,
+      "b": 75,
+      "status": "Good",
+      "c": "244",
+      "rating": "66"
     },
     "JP-02": {
-      "c": 85,
-      "a": 35,
-      "status": "208",
-      "rating": "Insufficient",
-      "b": 88
+      "c": "208",
+      "a": 88,
+      "status": "Insufficient",
+      "rating": "-",
+      "b": 85
     },
     "BG-03": {
-      "c": 85,
-      "a": 44,
-      "status": "201",
-      "rating": "Insufficient",
-      "b": 72
+      "c": "201",
+      "a": 72,
+      "status": "Insufficient",
+      "rating": "-",
+      "b": 85
     },
     "CH-04": {
-      "c": 82,
-      "a": 85,
-      "status": "243",
-      "b": 76,
-      "rating": "Good"
+      "c": "243",
+      "a": 76,
+      "status": "Good",
+      "b": 82,
+      "rating": "67"
     },
     "SI-03": {
-      "c": 78,
-      "a": 90,
-      "status": "253",
-      "b": 85,
-      "rating": "Good"
+      "c": "253",
+      "a": 85,
+      "status": "Good",
+      "b": 78,
+      "rating": "51"
     },
     "UA-03": {
-      "c": 0,
-      "rating": "Insufficient",
-      "a": 78,
-      "b": 82,
-      "status": "160"
+      "c": "160",
+      "rating": "-",
+      "a": 82,
+      "b": 0,
+      "status": "Insufficient"
     },
     "HR-03": {
-      "rating": "Disqualification"
+      "rating": "-",
+      "status": "Disqualification"
     },
     "FI-01": {
-      "a": 87,
-      "b": 85,
-      "status": "265",
-      "c": 93,
-      "rating": "Good"
+      "a": 85,
+      "b": 93,
+      "status": "Good",
+      "c": "265",
+      "rating": "35"
     },
     "NL-02": {
       "a": 29,
-      "rating": "Disqualification"
+      "rating": "-",
+      "status": "Disqualification"
     },
     "DE-01": {
-      "c": 95,
-      "a": 88,
-      "status": "268",
-      "b": 85,
-      "rating": "Good"
+      "c": "268",
+      "a": 85,
+      "status": "Good",
+      "b": 95,
+      "rating": "28"
     },
     "AT-01": {
-      "c": 91,
-      "a": 4,
-      "rating": "Insufficient",
-      "b": 90,
-      "status": "185"
+      "c": "185",
+      "a": 90,
+      "rating": "-",
+      "b": 91,
+      "status": "Insufficient"
     },
     "ES-03": {
-      "c": 70,
-      "a": 93,
-      "status": "253",
-      "b": 90,
-      "rating": "Good"
+      "c": "253",
+      "a": 90,
+      "status": "Good",
+      "b": 70,
+      "rating": "52"
     },
     "DK-02": {
       "c": 0,
-      "rating": "Withdrawn"
+      "rating": "-",
+      "b": 0,
+      "status": "Withdrawn"
     },
     "PT-02": {
-      "c": 0,
-      "rating": "Insufficient",
-      "a": 58,
-      "b": 71,
-      "status": "129"
+      "c": "129",
+      "rating": "-",
+      "a": 71,
+      "b": 0,
+      "status": "Insufficient"
     },
     "AR-02": {
-      "c": 0,
-      "rating": "Insufficient",
+      "c": "146",
+      "rating": "-",
       "a": 73,
-      "b": 73,
-      "status": "146"
+      "b": 0,
+      "status": "Insufficient"
     },
     "MK-01": {
-      "a": 85,
-      "b": 77,
-      "status": "236",
-      "c": 74,
-      "rating": "Satisfactory"
+      "a": 77,
+      "b": 74,
+      "status": "Satisfactory",
+      "c": "236",
+      "rating": "78"
     },
     "NL-03": {
-      "a": 92,
-      "b": 78,
-      "status": "242",
-      "c": 72,
-      "rating": "Good"
+      "a": 78,
+      "b": 72,
+      "status": "Good",
+      "c": "242",
+      "rating": "71"
     },
     "RO-02": {
-      "a": 83,
-      "b": 84,
-      "status": "237",
-      "c": 70,
-      "rating": "Satisfactory"
+      "a": 84,
+      "b": 70,
+      "status": "Satisfactory",
+      "c": "237",
+      "rating": "75"
     },
     "RO-01": {
-      "a": 81,
-      "b": 87,
-      "status": "251",
-      "c": 83,
-      "rating": "Good"
+      "a": 87,
+      "b": 83,
+      "status": "Good",
+      "c": "251",
+      "rating": "54"
     },
     "LV-03": {
-      "a": 72,
+      "a": 88,
       "b": 88,
-      "status": "248",
-      "c": 88,
-      "rating": "Good"
+      "status": "Good",
+      "c": "248",
+      "rating": "62"
     },
     "LV-05": {
-      "a": 72,
-      "b": 81,
-      "status": "236",
-      "c": 83,
-      "rating": "Satisfactory"
+      "a": 81,
+      "b": 83,
+      "status": "Satisfactory",
+      "c": "236",
+      "rating": "76"
     }
   }
 }
