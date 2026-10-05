@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-05 15:30 (JST)",
+  "lastUpdated": "2026-10-05 15:54 (JST)",
   "source": "https://fciigp2026.fci.systems/results.php",
   "scores": {
     "CN-04": {
@@ -62,7 +62,7 @@
       "c": 92,
       "a": 66,
       "status": "Withdrawn",
-      "rating": "Termination",
+      "rating": "Withdrawn",
       "b": 92
     },
     "BG-01": {
